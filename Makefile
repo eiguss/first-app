@@ -17,6 +17,10 @@ de-node:
 	docker-compose exec node sh
 dd:
 	docker-compose down --rmi all
+dstop:
+	docker-compose stop
+dstart:
+	docker-compose start
 test:
 	docker-compose exec php composer test
 	docker-compose exec node npm run test

@@ -18,13 +18,24 @@ export default {
     css: [
     ],
     plugins: [
+        '~/plugins/axios.js',
     ],
+    loading: '~/components/Loading.vue',
+    loadingIndicator: '~/custom-loading.html',
+    axios: {
+        baseURL: "http://localhost:8080",
+    },
     components: true,
     buildModules: [
+        '@nuxtjs/vuetify',
     ],
     modules: [
+        '@nuxtjs/axios',
     ],
     build: {
         publicPath: '/assets/',
+    },
+    router: {
+        middleware: ['auth'],
     }
 }

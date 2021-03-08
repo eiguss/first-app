@@ -19,6 +19,7 @@ services:
         build:
             context: .
             dockerfile: ./docker/node/Dockerfile
+        restart: always
         volumes:
             - .:/var/www/html
         ports:
