@@ -14,6 +14,9 @@ $app = AppFactory::create();
 require __DIR__.'/app/Routes/api.php';
 require __DIR__.'/app/Routes/web.php';
 
+// Set up dependencies
+require __DIR__.'/app/dependencies.php';
+
 // Add Routing Middleware
 $app->addRoutingMiddleware();
 

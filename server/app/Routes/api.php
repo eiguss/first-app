@@ -1,15 +1,19 @@
 <?
 use Slim\Routing\RouteCollectorProxy;
 use App\Middlewares\CorsMiddleware;
+use App\Middlewares\AuthMiddleware;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
+use App\Controllers\UserController;
+
 $app->group('/api', function (RouteCollectorProxy $app) {
-    $app->get('/[{path:.*}]', function (Request $request, Response $response, $args) {
-        //throw new \Exception('Api routes not defined.');
-        sleep(2);
-        $response->getBody()->write('ey');
-        
-        return $response;
+    $app->group('/user', function (RouteCollectorProxy $app) {
+        $app->get('', UserController::class.":getUserInfo");
     });
-})->add(CorsMiddleware::class.':allowSameDomain');
+    $app->get('/[{path:.*}]', function (Request $request, Response $response, $args) {
+        throw new \Exception('Api route not defined.');
+    });
+})->add(AuthMiddleware::class.':apiMiddleware')
+->add(CorsMiddleware::class.':allowSameDomain');
+

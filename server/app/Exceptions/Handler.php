@@ -34,10 +34,7 @@ class Handler
                 ])
             );
         }
-        
-        $response->withStatus(500);
-
-
-        return $response;
+        echo "<pre>";var_dump($e);exit();
+        return $response->withHeader('Access-Control-Allow-Origin', "*")->withStatus(500);
     }
 }

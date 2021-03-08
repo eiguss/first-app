@@ -34,8 +34,5 @@ export default {
     ],
     build: {
         publicPath: '/assets/',
-    },
-    router: {
-        middleware: ['auth'],
     }
 }
