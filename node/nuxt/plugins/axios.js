@@ -8,7 +8,6 @@ export default function ({ store, redirect }) {
         }, (error) => {
             store.commit('global/END_LOADING');
             if(error.response.status===401){
-                console.log('redirect');
                 return redirect('/login')
             }else if(error.response.status===403){
                 // TODO redirect to unathorized

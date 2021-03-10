@@ -1,6 +1,11 @@
 <template>
   <div v-if="isLoading" class="loading-page">
-    <p class="loading-text">Loading...</p>
+    <p class="loading-text">
+        <v-progress-circular
+            indeterminate
+            color="green"
+        ></v-progress-circular>
+    </p>
   </div>
 </template>
 
