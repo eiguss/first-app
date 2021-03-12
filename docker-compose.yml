@@ -3,7 +3,10 @@ services:
     nginx:
         build: ./docker/nginx
         ports:
+            # php docker
             - "8080:80"
+            # node docker
+            - "3000:3000"
         volumes:
             - ./server/public:/var/www/html/public
             - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
@@ -22,6 +25,4 @@ services:
         restart: always
         volumes:
             - .:/var/www/html
-        ports:
-            - "3000:3000"
         command: sh -c "npm install & npm run dev"

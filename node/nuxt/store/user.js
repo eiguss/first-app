@@ -19,8 +19,18 @@ export const actions = {
             'api/user'
         ).then(response => { 
             commit('SET_USER', response.data);
+        });
+    },
+    async login({}, user) {
+        return await this.$axios.post(
+            'api/login', {
+                email: user.email,
+                password: user.password,
+            }
+        ).then(() => {
+            return true;
         }).catch(() => {
-            
+            return false;
         });
     },
 };

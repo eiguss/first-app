@@ -10,10 +10,6 @@ use App\Controllers\UserController;
 $app->group('/api', function (RouteCollectorProxy $app) {
     $app->group('/user', function (RouteCollectorProxy $app) {
         $app->get('', UserController::class.":getUserInfo");
-    });
-    $app->get('/[{path:.*}]', function (Request $request, Response $response, $args) {
-        throw new \Exception('Api route not defined.');
-    });
-})->add(AuthMiddleware::class.':apiMiddleware')
-->add(CorsMiddleware::class.':allowSameDomain');
-
+    })->add(AuthMiddleware::class.':apiMiddleware');
+    $app->post('/login', UserController::class.":login");
+});

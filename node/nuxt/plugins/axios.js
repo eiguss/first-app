@@ -8,7 +8,7 @@ export default function ({ store, redirect }) {
         }, (error) => {
             store.commit('global/END_LOADING');
             if(error.response.status===401){
-                return redirect('/login')
+                store.$router.push('/login');
             }else if(error.response.status===403){
                 // TODO redirect to unathorized
             }
