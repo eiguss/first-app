@@ -23,6 +23,9 @@ export default {
     loading: '~/components/Loading.vue',
     loadingIndicator: '~/custom-loading.html',
     components: true,
+    axios: {
+        baseURL: "/",
+    },
     buildModules: [
         '@nuxtjs/vuetify',
     ],

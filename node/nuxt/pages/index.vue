@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="name!=''">
          <v-card
             class="mx-auto my-12"
             max-width="374"

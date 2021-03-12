@@ -4,5 +4,7 @@ export default function({ isHMR, store }) {
     if (isHMR) return;
     
     // get logged user
-    return store.dispatch('user/getUser');
+    return store.dispatch('user/getUser').catch(() => {
+        // avoid error page
+    });
 }

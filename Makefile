@@ -24,6 +24,12 @@ dstart:
 test:
 	docker-compose exec php composer test
 	docker-compose exec node npm run test
+test-node:
+	docker-compose exec node npm run test
+node-lint:
+	docker-compose exec node npm run lint
+node-lint-fix:
+	docker-compose exec node npm run lint:fix
 
 # scripts for nuxt build
 clean-build:
