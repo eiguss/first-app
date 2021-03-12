@@ -7,8 +7,9 @@ export default function ({ store, redirect }) {
             return response;
         }, (error) => {
             store.commit('global/END_LOADING');
+            // If 401, user not logged in, redirect to login page
             if(error.response.status===401){
-                store.$router.push('/login');
+                    store.$router.push('/login');
             }else if(error.response.status===403){
                 // TODO redirect to unathorized
             }

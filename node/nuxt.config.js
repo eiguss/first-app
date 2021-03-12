@@ -31,5 +31,16 @@ export default {
     ],
     build: {
         publicPath: '/assets/',
+    },
+    router: {
+        extendRoutes (routes) {
+            routes.push(
+                {
+                    name: 'page404',
+                    path: '*',
+                    component: '~/components/404.vue'
+                }
+            );
+        }
     }
 }

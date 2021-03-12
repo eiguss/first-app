@@ -69,6 +69,12 @@
                 password: "",
             };
         },
+        async asyncData (context) {
+            var isLogged = await context.store.dispatch('user/isLoggedUser');
+            if(isLogged){
+                context.redirect('/');
+            }
+        },
         methods: Object.assign(
             mapActions('user', {
                 userLogin: 'login',

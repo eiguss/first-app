@@ -18,18 +18,42 @@ class UserController extends Controller
         $this->userService = $userService;
     }
 
-    public function getUserInfo(Request $request, Response $response, array $arguments = [])
+    public function getUserInfo(Request $request, Response $response)
     {
         $response->getBody()->write(
             json_encode([
-                "user-info" => $this->userService->getUserInfo()
+                "user_info" => $this->userService->getUserInfo()
+            ])
+        );
+
+        return $response->withHeader('Content-Type', 'application/json; charset=utf-8');
+    }
+    
+
+    public function isLogged(Request $request, Response $response)
+    {
+        $response->getBody()->write(
+            json_encode([
+                "isLogged" => $this->userService->isLogged()
+            ])
+        );
+
+        return $response->withHeader('Content-Type', 'application/json; charset=utf-8');
+    }
+    
+
+    public function logout(Request $request, Response $response)
+    {
+        $response->getBody()->write(
+            json_encode([
+                "logout" => $this->userService->logout()
             ])
         );
 
         return $response->withHeader('Content-Type', 'application/json; charset=utf-8');
     }
 
-    public function login(Request $request, Response $response, array $arguments = [])
+    public function login(Request $request, Response $response)
     {
         $email = $this->getParam($request, 'email', null);
         $password = $this->getParam($request, 'password', null);

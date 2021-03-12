@@ -1,73 +1,46 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        nuxt
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
+  <div>
+         <v-card
+            class="mx-auto my-12"
+            max-width="374"
         >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+            <v-card-title class="blue darken-2 white--text">
+                Welcome {{name}}!
+            </v-card-title>
+            <v-card-text>
+                <div class="mt-6">
+                    I'm glag to have you here user named "{{name}}" with email "{{email}}"
+                </div>
+            </v-card-text>
+             <v-card-actions>
+                <v-btn
+                    @click="logout"
+                >
+                    login
+                </v-btn>
+            </v-card-actions>
+        </v-card>
   </div>
 </template>
 
 <script>
-export default {}
+    import { mapActions, mapGetters } from 'vuex';
+    export default {
+        computed: Object.assign(
+            mapGetters('user', {
+                email: 'email',
+                name: 'name',
+            }),
+        ),
+        methods: Object.assign(
+            mapActions('user', {
+                userLogout: 'logout',
+            }),{
+                async logout(){
+                    await this.userLogout();
+                    this.$router.push('/login');
+                }
+            }
+        )
+    }
 </script>
-
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-</style>

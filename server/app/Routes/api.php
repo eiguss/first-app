@@ -9,7 +9,10 @@ use App\Controllers\UserController;
 
 $app->group('/api', function (RouteCollectorProxy $app) {
     $app->group('/user', function (RouteCollectorProxy $app) {
-        $app->get('', UserController::class.":getUserInfo");
-    })->add(AuthMiddleware::class.':apiMiddleware');
-    $app->post('/login', UserController::class.":login");
+        $app->get('', UserController::class.":getUserInfo")
+            ->add(AuthMiddleware::class.':apiMiddleware');
+        $app->get('/is-logged', UserController::class.":isLogged");
+        $app->post('/login', UserController::class.":login");
+        $app->post('/logout', UserController::class.":logout");
+    }); 
 });

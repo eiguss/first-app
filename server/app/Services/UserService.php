@@ -19,7 +19,10 @@ class UserService
 
     public function getUserInfo()
     {
-        return $this->userData;
+        return [
+            'name' => $this->userData['name'],
+            'email' => $this->userData['email'],
+        ];
     }
 
     public function login($email,$password)
@@ -41,6 +44,11 @@ class UserService
     public function getId()
     {
         return $this->userData['id'];
+    }
+    
+    public function isLogged()
+    {
+        return !empty($this->userData['id']);
     }
     
     public function logout()
