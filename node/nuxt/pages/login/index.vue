@@ -8,7 +8,7 @@
                 Login
             </v-card-title>
             <v-card-text @keyup.enter="login">
-                 <template v-if="!userLogged">
+                <template v-if="!userLogged">
                     <v-alert
                         v-if="showError"
                         dense
@@ -21,14 +21,14 @@
                     <v-text-field 
                         v-model="email"
                         label="Email"
-                    ></v-text-field>
+                    />
                     <v-text-field
                         v-model="password"
                         :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
                         :type="showPassword ? 'text' : 'password'"
-                        @click:append="showPassword = !showPassword"
                         label="Password"
-                    ></v-text-field>
+                        @click:append="showPassword = !showPassword"
+                    />
                 </template>
                 <template v-else>
                     <v-alert
@@ -41,11 +41,11 @@
                     </v-alert>
                 </template>
             </v-card-text>
-             <v-card-actions v-if="!userLogged">
+            <v-card-actions v-if="!userLogged">
                 <v-btn
                     color="primary"
-                    @click="login"
                     :disabled="password==''||email==''"
+                    @click="login"
                 >
                     login
                 </v-btn>
@@ -55,46 +55,46 @@
 </template>
 
 <script>
-    import { mapActions } from 'vuex';
-    export default {
-        layout() {
-            return 'none';
-        },
-        data() {
-            return {
-                showPassword: false,
-                showError: false,
-                userLogged: false,
-                email: "",
-                password: "",
-            };
-        },
-        async asyncData (context) {
-            var isLogged = await context.store.dispatch('user/isLoggedUser');
-            if(isLogged){
-                context.redirect('/');
-            }
-        },
-        methods: Object.assign(
-            mapActions('user', {
-                userLogin: 'login',
-            }),{
-                async login(){
-                    var userLogedIn = await this.userLogin({
-                        email: this.email,
-                        password: this.password
-                    });
+import { mapActions } from 'vuex';
+export default {
+    layout() {
+        return 'none';
+    },
+    async asyncData (context) {
+        var isLogged = await context.store.dispatch('user/isLoggedUser');
+        if(isLogged){
+            context.redirect('/');
+        }
+    },
+    data() {
+        return {
+            showPassword: false,
+            showError: false,
+            userLogged: false,
+            email: '',
+            password: '',
+        };
+    },
+    methods: Object.assign(
+        mapActions('user', {
+            userLogin: 'login',
+        }),{
+            async login(){
+                var userLogedIn = await this.userLogin({
+                    email: this.email,
+                    password: this.password
+                });
 
-                    if(userLogedIn){
-                        this.userLogged=true;
-                        setTimeout(()=>{ this.$router.push('/'); }, 1000);
-                    }else{
-                        this.showError=true;
-                        this.email='';
-                        this.password='';
-                    }
+                if(userLogedIn){
+                    this.userLogged=true;
+                    setTimeout(()=>{ this.$router.push('/'); }, 1000);
+                }else{
+                    this.showError=true;
+                    this.email='';
+                    this.password='';
                 }
             }
-        )
-    }
+        }
+    )
+};
 </script>

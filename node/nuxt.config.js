@@ -1,6 +1,6 @@
 export default {
     server:{
-        host:"0.0.0.0"
+        host:'0.0.0.0'
     },
     srcDir: 'nuxt/',
     ssr: false,
@@ -24,7 +24,7 @@ export default {
     loadingIndicator: '~/custom-loading.html',
     components: true,
     axios: {
-        baseURL: "/",
+        baseURL: '/',
     },
     buildModules: [
         '@nuxtjs/vuetify',
@@ -46,4 +46,4 @@ export default {
             );
         }
     }
-}
+};

@@ -1,5 +1,4 @@
-/*global process*/
-export default function ({ store, redirect }) {
+export default function ({ store }) {
     store.$axios.interceptors.response.use(
         (response) => {
             store.commit('global/END_LOADING');

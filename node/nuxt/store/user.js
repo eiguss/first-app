@@ -1,4 +1,3 @@
-/*global process*/
 export const state = () => ({
     email: '',
     name: '',
@@ -24,14 +23,14 @@ export const actions = {
             commit('SET_USER', response.data.user_info);
         });
     },
-    async isLoggedUser({ commit }) {
+    async isLoggedUser() {
         return await this.$axios.get(
             'api/user/is-logged'
         ).then(response => { 
             return response.data.isLogged;
         });
     },
-    async login({}, user) {
+    async login(_, user) {
         return await this.$axios.post(
             'api/user/login', {
                 email: user.email,

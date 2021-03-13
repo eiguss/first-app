@@ -1,4 +1,3 @@
-/*global process*/
 export default function({ isHMR, store }) {
     // If middleware is called from hot module replacement, ignore it
     if (isHMR) return;

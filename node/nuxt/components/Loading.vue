@@ -1,23 +1,23 @@
 <template>
-  <div v-if="isLoading" class="loading-page">
-    <p class="loading-text">
-        <v-progress-circular
-            indeterminate
-            color="green"
-        ></v-progress-circular>
-    </p>
-  </div>
+    <div v-if="isLoading" class="loading-page">
+        <p class="loading-text">
+            <v-progress-circular
+                indeterminate
+                color="green"
+            />
+        </p>
+    </div>
 </template>
 
 <script>
-    import { mapGetters } from 'vuex';
-    export default {
-        computed: Object.assign(
-            mapGetters('global', {
-                isLoading: 'loading',
-            }),
-        )
-    };
+import { mapGetters } from 'vuex';
+export default {
+    computed: Object.assign(
+        mapGetters('global', {
+            isLoading: 'loading',
+        }),
+    )
+};
 </script>
 
 <style scoped>
