@@ -1,9 +1,10 @@
-
+admin-service/vendor/
 server/vendor/
 server/nuxt_index/
 server/public/coverage/
 server/public/assets/
 server/.phpunit.result.cache
+database/data/*
 node/node_modules/
 node/coverage/
 node/.nuxt

@@ -1,9 +1,12 @@
 #setup
 du:
 	docker-compose up -d --build
+db:
+	docker-compose build
 du-i:
 	docker-compose up -d --build
 	docker-compose exec php composer install
+	docker-compose exec admin-service composer install
 node-build:
 	make clean-build
 	make create-build-folders
@@ -15,6 +18,10 @@ de-nginx:
 	docker-compose exec nginx sh
 de-node:
 	docker-compose exec node sh
+de-admin:
+	docker-compose exec admin-service sh
+de-database:
+	docker-compose exec database sh
 dd:
 	docker-compose down --rmi all
 dstop:
