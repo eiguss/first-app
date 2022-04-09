@@ -1,6 +1,7 @@
 export const state = () => ({
     email: '',
     name: '',
+    token: '',
 });
 
 export const getters = {
@@ -12,6 +13,10 @@ export const mutations = {
     SET_USER(state, user) {
         state.email = user.email;
         state.name = user.name;
+        state.token = user.token;
+    },
+    SET_TOKEN(state, token) {
+        state.token = token;
     },
 };
 
@@ -23,22 +28,30 @@ export const actions = {
             commit('SET_USER', response.data.user_info);
         });
     },
-    async isLoggedUser() {
+    async isLoggedUser({ commit }) {
         return await this.$axios.get(
             'api/user/is-logged'
-        ).then(response => { 
+        ).then(response => {
+            commit('SET_TOKEN', response.data.token);
+
             return response.data.isLogged;
         });
     },
-    async login(_, user) {
+    async login({state}, user) {
         return await this.$axios.post(
             'api/user/login', {
                 email: user.email,
                 password: user.password,
+                token: state.token,
             }
         ).then(() => {
             return true;
-        }).catch(() => {
+        }).catch((error) => {
+            if(error.response.status===403){
+                // if invalid csrf token, reload
+                window.location.reload(true);
+            }
+
             return false;
         });
     },

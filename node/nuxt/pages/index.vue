@@ -16,7 +16,7 @@
                 <v-btn
                     @click="logout"
                 >
-                    login
+                    logout
                 </v-btn>
             </v-card-actions>
         </v-card>

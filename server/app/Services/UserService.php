@@ -7,7 +7,7 @@ use App\Classes\SessionManager;
 class UserService
 {
     const SESSION_USER_DATA_KEY = 'user_data';
-    
+
     private $userData;
     private $session;
 

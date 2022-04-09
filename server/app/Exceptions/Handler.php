@@ -34,7 +34,7 @@ class Handler
                 ])
             );
         }
-        // echo "<pre>";var_dump($e);exit();
-        return $response->withStatus(500);
+
+        return $response->withStatus($e->getCode());
     }
 }
