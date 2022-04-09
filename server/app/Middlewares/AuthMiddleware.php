@@ -26,7 +26,7 @@ class AuthMiddleware
      */
     public function apiMiddleware(Request $request, RequestHandler $handler)
     {
-        if(!$this->user->getId() && $request->getMethod() !== 'OPTIONS'){
+        if($request->getMethod() !== 'OPTIONS' && !$this->user->getId()){
             $response = new Response();
             return $response->withStatus(401);
         }

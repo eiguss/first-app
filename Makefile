@@ -1,12 +1,10 @@
 #setup
 du:
 	docker-compose up -d --build
-db:
-	docker-compose build
-du-i:
-	docker-compose up -d --build
 	docker-compose exec php composer install
 	docker-compose exec admin-service composer install
+db:
+	docker-compose build
 node-build:
 	make clean-build
 	make create-build-folders

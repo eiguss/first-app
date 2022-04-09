@@ -41,7 +41,7 @@ export default {
                 {
                     name: 'page404',
                     path: '*',
-                    component: '~/components/404.vue'
+                    component: '~/components/page-404.vue'
                 }
             );
         }

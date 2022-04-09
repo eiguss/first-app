@@ -1,4 +1,4 @@
-FROM php:7.3-fpm
+FROM php:8.1-fpm
 LABEL maintainer="Eiguss <roberto.martinez.q@gmail.com>"
 
 COPY ./docker/php/php.ini /usr/local/etc/php/conf.d/php.ini

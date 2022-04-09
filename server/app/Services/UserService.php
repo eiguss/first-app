@@ -43,7 +43,7 @@ class UserService
     
     public function getId()
     {
-        return $this->userData['id'];
+        return $this->userData ? $this->userData['id'] : false;
     }
     
     public function isLogged()
