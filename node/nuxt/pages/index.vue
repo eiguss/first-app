@@ -9,7 +9,7 @@
             </v-card-title>
             <v-card-text>
                 <div class="mt-6">
-                    I'm glag to have you here user named "{{ name }}" with email "{{ email }}"
+                    {{ $t('login.welcome_text', { name: name, email: email }) }}
                 </div>
             </v-card-text>
             <v-card-actions>

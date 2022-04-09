@@ -2,11 +2,13 @@ export const state = () => ({
     email: '',
     name: '',
     token: '',
+    locale: 'es',
 });
 
 export const getters = {
     email: state => state.email,
     name: state => state.name,
+    locale: state => state.locale,
 };
 
 export const mutations = {
@@ -14,6 +16,9 @@ export const mutations = {
         state.email = user.email;
         state.name = user.name;
         state.token = user.token;
+        state.locale = user.locale;
+
+        this.$i18n.locale = state.locale;
     },
     SET_TOKEN(state, token) {
         state.token = token;

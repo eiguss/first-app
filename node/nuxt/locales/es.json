@@ -1,0 +1,6 @@
+{
+    "login": {
+        "welcome_text" : "Bienvenido usuario con nombre {name} y email {email}",
+        "login": "Iniciar session"
+    }
+}

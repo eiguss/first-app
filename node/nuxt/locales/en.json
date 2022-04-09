@@ -1,0 +1,6 @@
+{
+    "login": {
+        "welcome_text" : "Welcome user with name {name} with email {email}",
+        "login": "Login"
+    }
+}

@@ -22,6 +22,7 @@ class UserService
         return [
             'name' => $this->userData['name'],
             'email' => $this->userData['email'],
+            'locale' => $this->userData['locale'],
         ];
     }
 
@@ -33,8 +34,9 @@ class UserService
 
         $this->userData = [
             'id' => 1,
-            'email' => $email,
+            'email' => 'Admin@test.com',
             'name' => 'Admin',
+            'locale' => 'en',
         ];
         $this->saveData();
 

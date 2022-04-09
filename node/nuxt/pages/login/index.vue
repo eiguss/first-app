@@ -5,7 +5,7 @@
             max-width="374"
         >
             <v-card-title class="blue darken-2 white--text">
-                Login
+                {{ $t('login.login') }}
             </v-card-title>
             <v-card-text @keyup.enter="login">
                 <template v-if="!userLogged">
