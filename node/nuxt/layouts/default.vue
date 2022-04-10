@@ -3,7 +3,7 @@
         <app-header></app-header>
         <sidebar></sidebar>
         <v-main>
-            <v-container fluid>
+            <v-container class="mt-16">
                 <Nuxt />
             </v-container>
         </v-main>

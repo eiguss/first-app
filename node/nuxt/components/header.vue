@@ -5,11 +5,11 @@
         elevation="3"
     >
         <v-app-bar-nav-icon @click.stop="toggleSidebarVisibility()"></v-app-bar-nav-icon>
-        <v-toolbar-title>{{ $t("header.title") }}</v-toolbar-title>
+        <v-app-bar-title>{{ $t("header.title") }}</v-app-bar-title>
         <v-spacer></v-spacer>
         <v-tooltip left>
             <template v-slot:activator="{ on, attrs }">
-                <v-btn 
+                <v-btn
                     icon 
                     @click.stop="logout()"
                     v-bind="attrs"

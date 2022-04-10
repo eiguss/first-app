@@ -9,7 +9,11 @@
         "welcome": "Bienvenido! redirigiendo..."
     },
     "sidebar": {
-        "users" : "Usuarios"
+        "users" : "Usuarios",
+        "management" : "Administración",
+        "roles" : "Roles",
+        "rights" : "Permisos",
+        "rooms" : "Habitaciones"
     },
     "header": {
         "title" : "Administración Atikarooms",
