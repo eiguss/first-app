@@ -7,18 +7,19 @@ use Slim\Psr7\Response;
 use App\Services\UserService;
 use App\Controllers\Controller;
 use App\Classes\CsrfTokenManager;
+use App\Validators\ParamsValidator;
 
 class UserController extends Controller 
 {
 
     protected $userService;
-    protected $jsonResponse;
     protected $csrfTokenManager;
     
-    public function __construct(UserService $userService, CsrfTokenManager $csrfTokenManager)
+    public function __construct(UserService $userService, CsrfTokenManager $csrfTokenManager, ParamsValidator $paramsValidator)
     {
         $this->userService = $userService;
         $this->csrfTokenManager = $csrfTokenManager;
+        $this->paramsValidator = $paramsValidator;
     }
 
     public function getUserInfo(Request $request, Response $response)
@@ -66,21 +67,19 @@ class UserController extends Controller
 
     public function login(Request $request, Response $response)
     {
-        // TODO validate parems
-        $email = $this->getParam($request, 'email', null);
-        $password = $this->getParam($request, 'password', null);
-        $token = $this->getParam($request, 'token', null);
-        if($token !== $this->csrfTokenManager->getCsrfToken()){
-            throw new \Exception('Invalid token', 403);
-        }
+        $params = $this->getParamsAndValidate($request, [
+            'email'     => ['type' => 'string', 'canBeEmpty' => false],
+            'password'  => ['type' => 'string', 'canBeEmpty' => false],
+            'token'     => ['type' => 'string', 'canBeEmpty' => false],
+        ]);
 
-        if(empty($email)||empty($password)||!is_string($email)||!is_string($password)){
-            throw new \Exception('Invalid parameters', 422);
+        if($params['token'] !== $this->csrfTokenManager->getCsrfToken()){
+            throw new \Exception('Invalid token', 403);
         }
 
         $response->getBody()->write(
             json_encode([
-                'user-info' => $this->userService->login($email,$password)
+                'user-info' => $this->userService->login($params['email'], $params['password'])
             ])
         );
 

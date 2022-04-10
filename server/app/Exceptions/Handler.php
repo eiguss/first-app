@@ -4,6 +4,7 @@ namespace App\Exceptions;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use App\Exceptions\NuxtBuildMissingException;
+use App\Exceptions\InvalidParametersException;
 
 class Handler
 {
@@ -16,8 +17,6 @@ class Handler
         ?LoggerInterface $logger = null
     )
     {
-        $payload = ['error' => $e->getMessage()];
-
         $response = new Response();
 
         if($e instanceof NuxtBuildMissingException){
@@ -27,6 +26,15 @@ class Handler
                     <h3 style='text-align: center;'>Execute make node-build</h3>
                 </div>
             ");
+        
+        }else if ($e instanceof InvalidParametersException) {
+            $response->getBody()->write(
+                json_encode([
+                    "message" => $e->getMessage(),
+                    "errors" => $e->getExtraParams()
+                ])
+            );
+            $data['errors'] = $e->getExtraParams();
         }else {
             $response->getBody()->write(
                 json_encode([
@@ -35,6 +43,6 @@ class Handler
             );
         }
 
-        return $response->withStatus($e->getCode());
+        return $response->withStatus($e->getCode())->withHeader('Content-Type', 'application/json');
     }
 }
