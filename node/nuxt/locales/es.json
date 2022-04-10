@@ -1,6 +1,18 @@
 {
     "login": {
-        "welcome_text" : "Bienvenido usuario con nombre {name} y email {email}",
-        "login": "Iniciar session"
+        "title" : "Inicia sessión",
+        "subtitle" : "para entrar al panel de administración de atikarooms",
+        "email": "Email",
+        "password": "Contraseña",
+        "login": "Entrar",
+        "invalid": "Usuario/password inválido",
+        "welcome": "Bienvenido! redirigiendo..."
+    },
+    "sidebar": {
+        "users" : "Usuarios"
+    },
+    "header": {
+        "title" : "Administración Atikarooms",
+        "logout" : "Cerrar sesión"
     }
 }

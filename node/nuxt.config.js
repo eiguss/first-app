@@ -6,7 +6,7 @@ export default {
     ssr: false,
     target: 'static',
     head: {
-        title: 'nginx slim php and nuxt',
+        title: 'Atikarooms Administration',
         meta: [
             { charset: 'utf-8' },
             { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -22,7 +22,6 @@ export default {
         '~/plugins/i18n.js',
     ],
     loading: '~/components/Loading.vue',
-    loadingIndicator: '~/custom-loading.html',
     components: true,
     axios: {
         baseURL: '/',

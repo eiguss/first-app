@@ -3,7 +3,7 @@
         <p class="loading-text">
             <v-progress-circular
                 indeterminate
-                color="green"
+                color="grey"
             />
         </p>
     </div>

@@ -10,6 +10,8 @@ node-build:
 	make create-build-folders
 	docker-compose exec node npm run build
 	make move-build-files-to-server
+ds:
+	docker-compose stop
 de:
 	docker-compose exec php sh
 de-nginx:

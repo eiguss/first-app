@@ -2,11 +2,15 @@
     <div>
         <v-card
             class="mx-auto my-12"
-            max-width="374"
+            max-width="500"
         >
-            <v-card-title class="blue darken-2 white--text">
-                {{ $t('login.login') }}
+            <v-card-title>
+                {{ $t('login.title') }}
             </v-card-title>
+            <v-card-subtitle>
+                {{ $t('login.subtitle') }}
+            </v-card-subtitle>
+            <v-divider></v-divider>
             <v-card-text @keyup.enter="login">
                 <template v-if="!userLogged">
                     <v-alert
@@ -16,17 +20,17 @@
                         type="error"
                         class="mt-6"
                     >
-                        Invalid user/password
+                        {{ $t("login.invalid") }}
                     </v-alert>
                     <v-text-field 
                         v-model="email"
-                        label="Email"
+                        :label="$t('login.email')"
                     />
                     <v-text-field
                         v-model="password"
                         :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
                         :type="showPassword ? 'text' : 'password'"
-                        label="Password"
+                        :label="$t('login.password')"
                         @click:append="showPassword = !showPassword"
                     />
                 </template>
@@ -37,7 +41,7 @@
                         type="success"
                         class="mt-6"
                     >
-                        Welcome! redirecting...
+                        {{ $t("login.welcome") }}
                     </v-alert>
                 </template>
             </v-card-text>
@@ -47,7 +51,7 @@
                     :disabled="password==''||email==''"
                     @click="login"
                 >
-                    login
+                    {{ $t("login.login") }}
                 </v-btn>
             </v-card-actions>
         </v-card>

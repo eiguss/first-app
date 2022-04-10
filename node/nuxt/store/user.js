@@ -2,13 +2,15 @@ export const state = () => ({
     email: '',
     name: '',
     token: '',
-    locale: 'es',
+    locale: 'en',
+    acronym: '',
 });
 
 export const getters = {
     email: state => state.email,
     name: state => state.name,
     locale: state => state.locale,
+    acronym: state => state.acronym,
 };
 
 export const mutations = {
@@ -18,6 +20,11 @@ export const mutations = {
         state.token = user.token;
         state.locale = user.locale;
 
+        let fullName = state.name.split(' ');
+        state.acronym = fullName[0].charAt(0).toUpperCase();
+        if(fullName[1]){
+            state.acronym += fullName[1].charAt(0).toUpperCase();
+        }
         this.$i18n.locale = state.locale;
     },
     SET_TOKEN(state, token) {
@@ -38,7 +45,6 @@ export const actions = {
             'api/user/is-logged'
         ).then(response => {
             commit('SET_TOKEN', response.data.token);
-
             return response.data.isLogged;
         });
     },
@@ -64,6 +70,7 @@ export const actions = {
         return await this.$axios.post(
             'api/user/logout'
         ).then(() => {
+            this.$router.push('/login');
             return true;
         }).catch(() => {
             return false;
