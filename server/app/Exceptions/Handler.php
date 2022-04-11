@@ -43,6 +43,8 @@ class Handler
             );
         }
 
-        return $response->withStatus($e->getCode())->withHeader('Content-Type', 'application/json');
+        $code = $e->getCode() ?: 500;
+
+        return $response->withStatus($code)->withHeader('Content-Type', 'application/json');
     }
 }

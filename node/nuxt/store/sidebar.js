@@ -4,7 +4,7 @@ export const state = () => ({
         { name: 'users', title: 'sidebar.users', icon: 'mdi-account-group', link: '/users', subItems: [
             { name: 'management', title: 'sidebar.management', icon: 'mdi-account-multiple', link: '/users/management'},
             { name: 'roles', title: 'sidebar.roles', icon: 'mdi-format-list-text', link: '/users/roles'},
-            { name: 'rights', title: 'sidebar.rights', icon: 'mdi-format-list-bulleted-square', link: '/users/rights'}
+            { name: 'rights', title: 'sidebar.rights', icon: 'mdi-clipboard-text-outline', link: '/users/rights'}
         ]},
         { name: 'rooms', title: 'sidebar.rooms', icon: 'mdi-home-city', link: '/rooms'},
     ],
