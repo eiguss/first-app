@@ -65,7 +65,7 @@ export default {
         return 'none';
     },
     async asyncData (context) {
-        var isLogged = await context.store.dispatch('user/isLoggedUser');
+        var isLogged = await context.store.dispatch('logged-user/isLoggedUser');
         if(isLogged){
             context.redirect('/');
         }
@@ -80,7 +80,7 @@ export default {
         };
     },
     methods: Object.assign(
-        mapActions('user', {
+        mapActions('logged-user', {
             userLogin: 'login',
         }),{
             async login(){

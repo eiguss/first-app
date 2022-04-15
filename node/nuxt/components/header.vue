@@ -30,7 +30,7 @@ export default {
         ...mapMutations('sidebar',{
             toggleSidebarVisibility: 'TOGGLE_VISIBILITY'
         }),
-        ...mapActions('user', {
+        ...mapActions('logged-user', {
             userLogout: 'logout',
         }),
         async logout(){

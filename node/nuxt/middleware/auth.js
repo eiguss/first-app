@@ -3,7 +3,7 @@ export default function({ isHMR, store }) {
     if (isHMR) return;
     
     // get logged user
-    return store.dispatch('user/getUser').catch(() => {
+    return store.dispatch('logged-user/getUser').catch(() => {
         // avoid error page
     });
 }

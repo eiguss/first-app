@@ -5,7 +5,7 @@ Vue.use(VueI18n);
 
 export default ({ app, store }) => {
     app.i18n = new VueI18n({
-        locale: store.getters['user/locale'],
+        locale: store.getters['logged-user/locale'],
         fallbackLocale: 'en',
         silentFallbackWarn: true,
         messages: {

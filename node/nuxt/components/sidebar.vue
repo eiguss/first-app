@@ -76,7 +76,7 @@ export default {
             visible: 'visible',
             items: 'items',
         }),
-        ...mapGetters('user', {
+        ...mapGetters('logged-user', {
             userName: 'name',
             userEmail: 'email',
             userAcronym: 'acronym',

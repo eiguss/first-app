@@ -27,13 +27,13 @@
 import { mapActions, mapGetters } from 'vuex';
 export default {
     computed: Object.assign(
-        mapGetters('user', {
+        mapGetters('logged-user', {
             email: 'email',
             name: 'name',
         }),
     ),
     methods: Object.assign(
-        mapActions('user', {
+        mapActions('logged-user', {
             userLogout: 'logout',
         }),{
             async logout(){

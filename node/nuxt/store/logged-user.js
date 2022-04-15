@@ -35,14 +35,14 @@ export const mutations = {
 export const actions = {
     async getUser({ commit }) {
         return await this.$axios.get(
-            'api/user'
+            'api/logged-user'
         ).then(response => { 
             commit('SET_USER', response.data.user_info);
         });
     },
     async isLoggedUser({ commit }) {
         return await this.$axios.get(
-            'api/user/is-logged'
+            'api/logged-user/is-logged'
         ).then(response => {
             commit('SET_TOKEN', response.data.token);
             return response.data.isLogged;
@@ -50,7 +50,7 @@ export const actions = {
     },
     async login({state}, user) {
         return await this.$axios.post(
-            'api/user/login', {
+            'api/logged-user/login', {
                 email: user.email,
                 password: user.password,
                 token: state.token,
@@ -68,7 +68,7 @@ export const actions = {
     },
     async logout() {
         return await this.$axios.post(
-            'api/user/logout'
+            'api/logged-user/logout'
         ).then(() => {
             this.$router.push('/login');
             return true;
