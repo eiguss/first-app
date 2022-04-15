@@ -31,6 +31,7 @@
         >
             <template v-if="item.subItems">
                 <v-list-group
+                    v-if="showItem(item)"
                     :value="false"
                     :prepend-icon="item.icon"
                 >
@@ -39,6 +40,7 @@
                     </template>
                     <v-list-item
                         v-for="subItem in item.subItems"
+                        v-if="showItem(subItem)"
                         :key="subItem.name"
                         link
                     >
@@ -53,6 +55,7 @@
             </template>
             <template v-else>
                 <v-list-item-group
+                    v-if="showItem(item)"
                     color="primary"
                 >
                     <v-list-item link>
@@ -80,6 +83,7 @@ export default {
             userName: 'name',
             userEmail: 'email',
             userAcronym: 'acronym',
+            userRights: 'rights',
         }),
         showSidebar: {
             get () {
@@ -94,6 +98,21 @@ export default {
         ...mapMutations('sidebar',{
             'setVisibility': 'SET_VISIBILITY'
         }),
+        showItem(item) {
+            var show = false;
+            if(item.rights){
+                item.rights.forEach( (right) => {
+                    if(this.userRights.includes(right)) {
+                        show = true;
+                    }
+                });
+            }else{
+                // The sidebar item doesn't need right
+                show = true;
+            }
+
+            return show;
+        }
     }
 };
 </script>

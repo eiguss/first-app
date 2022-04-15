@@ -1,12 +1,21 @@
 export const state = () => ({
     visible: false,
     items: [
-        { name: 'users', title: 'sidebar.users', icon: 'mdi-account-group', link: '/users', subItems: [
-            { name: 'management', title: 'sidebar.management', icon: 'mdi-account-multiple', link: '/users/management'},
-            { name: 'roles', title: 'sidebar.roles', icon: 'mdi-format-list-text', link: '/users/roles'},
-            { name: 'rights', title: 'sidebar.rights', icon: 'mdi-clipboard-text-outline', link: '/users/rights'}
-        ]},
-        { name: 'rooms', title: 'sidebar.rooms', icon: 'mdi-home-city', link: '/rooms'},
+        { name: 'users', title: 'sidebar.users', icon: 'mdi-account-group', link: '/users',
+            subItems: [
+                { name: 'management', title: 'sidebar.management', icon: 'mdi-account-multiple', link: '/users/management',
+                    rights:['users_management']
+                },
+                { name: 'roles', title: 'sidebar.roles', icon: 'mdi-format-list-text', link: '/users/roles',
+                    rights:['rights_management']
+                },
+                { name: 'rights', title: 'sidebar.rights', icon: 'mdi-clipboard-text-outline', link: '/users/rights',
+                    rights:['roles_management']
+                }
+            ],
+            rights: ['users_management','rights_management','roles_management']
+        },
+        { name: 'rooms', title: 'sidebar.rooms', icon: 'mdi-home-city', link: '/rooms', rights:['rooms_management']},
     ],
 });
 

@@ -4,6 +4,8 @@ export const state = () => ({
     token: '',
     locale: 'en',
     acronym: '',
+    role: '',
+    rights: []
 });
 
 export const getters = {
@@ -11,6 +13,8 @@ export const getters = {
     name: state => state.name,
     locale: state => state.locale,
     acronym: state => state.acronym,
+    role: state => state.role,
+    rights: state => state.rights,
 };
 
 export const mutations = {
@@ -19,6 +23,8 @@ export const mutations = {
         state.name = user.name;
         state.token = user.token;
         state.locale = user.locale;
+        state.role = user.role;
+        state.rights = user.rights;
 
         let fullName = state.name.split(' ');
         state.acronym = fullName[0].charAt(0).toUpperCase();
