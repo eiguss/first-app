@@ -1,0 +1,9 @@
+.v-application{
+    .v-main{
+        &__wrap{
+            .v-btn.complementary{
+                @include complementary-button;
+            }
+        }
+    }
+}

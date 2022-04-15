@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="login-page">
         <v-card
             class="mx-auto my-12"
             max-width="500"
@@ -47,9 +47,9 @@
             </v-card-text>
             <v-card-actions v-if="!userLogged">
                 <v-btn
-                    color="primary"
                     :disabled="password==''||email==''"
                     @click="login"
+                    class="complementary"
                 >
                     {{ $t("login.login") }}
                 </v-btn>
