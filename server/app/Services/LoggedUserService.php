@@ -19,10 +19,17 @@ class LoggedUserService
 
     public function getUserInfo()
     {
+        $rights=[];
+        foreach ($this->userData['role']['rights'] as $right) {
+            $rights[] = $right['name'];
+        }
+
         return [
             'name' => $this->userData['name'],
             'email' => $this->userData['email'],
-            'locale' => $this->userData['locale'],
+            'locale' => $this->userData['language']['isoCode'],
+            'role' => $this->userData['role']['name'],
+            'rights' => $rights,
         ];
     }
 
@@ -31,13 +38,8 @@ class LoggedUserService
         if($email!=='root'||$password!=='root'){
             throw new \Exception('Error on login', 504);
         }
+        $this->userData = $this->testUser(); //replace by a call to the service
 
-        $this->userData = [
-            'id' => 1,
-            'email' => 'Admin@test.com',
-            'name' => 'Admin',
-            'locale' => 'en',
-        ];
         $this->saveData();
 
         return $this->userData;
@@ -61,5 +63,42 @@ class LoggedUserService
     private function saveData()
     {
         $this->session->set(self::SESSION_USER_DATA_KEY, $this->userData);
+    }
+
+    private function testUser()
+    {
+        return [
+            'id' => 1,
+            'email' => 'Admin@test.com',
+            'name' => 'Admin',
+            'creation_date' => 1650058268,
+            'language' => [
+                'id' => 1,
+                'name' => 'english',
+                'isoCode' => 'en',
+            ],
+            'role' => [
+                'id' => 1,
+                'name' => 'Root',
+                'rights' => [
+                    [
+                        'id' => 1,
+                        'name' => 'users_management',
+                    ],
+                    [
+                        'id' => 2,
+                        'name' => 'rights_management',
+                    ],
+                    [
+                        'id' => 3,
+                        'name' => 'roles_management',
+                    ],
+                    [
+                        'id' => 4,
+                        'name' => 'rooms_management',
+                    ],
+                ]
+            ],
+        ];
     }
 }
