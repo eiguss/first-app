@@ -19,18 +19,23 @@ class LoggedUserService
 
     public function getUserInfo()
     {
-        $rights=[];
-        foreach ($this->userData['role']['rights'] as $right) {
-            $rights[] = $right['name'];
-        }
-
         return [
             'name' => $this->userData['name'],
             'email' => $this->userData['email'],
             'locale' => $this->userData['language']['isoCode'],
             'role' => $this->userData['role']['name'],
-            'rights' => $rights,
+            'rights' => $this->getRights(),
         ];
+    }
+
+    public function getRights()
+    {
+        $rights=[];
+        foreach ($this->userData['role']['rights'] as $right) {
+            $rights[] = $right['name'];
+        }
+
+        return $rights;
     }
 
     public function login($email,$password)

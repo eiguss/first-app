@@ -1,17 +1,17 @@
 <?php
-namespace App\Controllers\LoggedUser;
+namespace App\Controllers\Users;
 
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
-use App\Controllers\LoggedUser\_BaseLoggedUserController;
+use App\Controllers\Users\_BaseUsersControlled;
 
-class logoutController extends _BaseLoggedUserController
+class getUsersController extends _BaseUsersController
 {
     public function __invoke(Request $request, Response $response)
     {
         $response->getBody()->write(
             json_encode([
-                'logout' => $this->loggedUserService->logout()
+                'user_info' => $this->usersService->getUsers(),
             ])
         );
 

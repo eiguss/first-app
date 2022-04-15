@@ -19,12 +19,11 @@ class AuthMiddleware
      * Middleware api
      *
      * @param  $request  PSR7 request
-     * @param  $response PSR7 response
-     * @param  callable  $next Next middleware
+     * @param  callable  $handler handler middleware
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function apiMiddleware(Request $request, RequestHandler $handler)
+    public function __invoke(Request $request, RequestHandler $handler)
     {
         if($request->getMethod() !== 'OPTIONS' && !$this->user->getId()){
             $response = new Response();

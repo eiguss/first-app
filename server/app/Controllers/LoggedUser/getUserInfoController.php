@@ -3,9 +3,9 @@ namespace App\Controllers\LoggedUser;
 
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
-use App\Controllers\LoggedUser\_BaseLoggedUserControlled;
+use App\Controllers\LoggedUser\_BaseLoggedUserController;
 
-class getUserInfoController extends _BaseLoggedUserControlled
+class getUserInfoController extends _BaseLoggedUserController
 {
     public function __invoke(Request $request, Response $response)
     {

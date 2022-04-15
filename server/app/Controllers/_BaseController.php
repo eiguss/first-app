@@ -1,9 +1,16 @@
 <?php
 namespace App\Controllers;
 
+use App\Validators\ParamsValidator;
+
 class _BaseController 
 {
     protected $paramsValidator;
+
+    public function __construct(ParamsValidator $paramsValidator)
+    {
+        $this->paramsValidator = $paramsValidator;
+    }
 
     protected function getParam($request, $param, $default=null)
     {

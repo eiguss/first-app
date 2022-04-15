@@ -6,7 +6,7 @@ use App\Controllers\_BaseController;
 use App\Classes\CsrfTokenManager;
 use App\Validators\ParamsValidator;
 
-class _BaseLoggedUserControlled extends _BaseController 
+class _BaseLoggedUserController extends _BaseController 
 {
 
     protected $loggedUserService;
@@ -16,6 +16,6 @@ class _BaseLoggedUserControlled extends _BaseController
     {
         $this->loggedUserService = $loggedUserService;
         $this->csrfTokenManager = $csrfTokenManager;
-        $this->paramsValidator = $paramsValidator;
+        parent::__construct($paramsValidator);
     }
 }
