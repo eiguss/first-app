@@ -5,7 +5,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
 use Slim\Psr7\Response;
 
-use App\Services\UserService as User;
+use App\Services\loggedUserService as User;
 
 class AuthMiddleware
 {

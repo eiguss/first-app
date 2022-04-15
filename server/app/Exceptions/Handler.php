@@ -38,7 +38,8 @@ class Handler
         }else {
             $response->getBody()->write(
                 json_encode([
-                    "error" => $e->getMessage()
+                    "error" => $e->getMessage(),
+                    "errorTrace" => explode("\n",$e->__toString()),
                 ])
             );
         }
