@@ -7,31 +7,19 @@
             class="elevation-1"
         >
             <template v-slot:top>
-                <v-toolbar
-                    flat
-                >
+                <v-toolbar flat>
                     <v-toolbar-title>{{$t('users.management.title')}}</v-toolbar-title>
-                    <v-divider
-                        class="mx-4"
-                        inset
-                        vertical
-                    ></v-divider>
                     <v-spacer></v-spacer>
-                    <v-btn
-                        color="primary"
-                        dark
-                        class="mb-2"
-                        @click="addUser"
-                    >
-                        New Item
+                    <v-btn color="primary" dark class="mb-2" @click="addUser">
+                        {{$t('users.management.addUser')}}
                     </v-btn>
                     <v-dialog v-model="dialogDelete" max-width="500px">
                         <v-card>
-                            <v-card-title class="text-h5">Are you sure you want to delete this item?</v-card-title>
+                            <v-card-title>{{ $t('users.management.deleteText', { userMail: userToDelete()}) }}</v-card-title>
                             <v-card-actions>
                                 <v-spacer></v-spacer>
-                                <v-btn color="blue darken-1" text @click="closeDelete">Cancel</v-btn>
-                                <v-btn color="blue darken-1" text @click="deleteUserConfirm">OK</v-btn>
+                                <v-btn color="red darken-1" text @click="deleteUserConfirm">{{$t('global.delete')}}</v-btn>
+                                <v-btn color="darken-1" text @click="closeDelete">{{$t('global.cancel')}}</v-btn>
                                 <v-spacer></v-spacer>
                             </v-card-actions>
                         </v-card>
@@ -39,22 +27,8 @@
                 </v-toolbar>
             </template>
             <template v-slot:item.actions="{ item }">
-                <v-icon
-                    small
-                    class="mr-2"
-                    @click="editUser(item)"
-                >
-                    mdi-pencil
-                </v-icon>
-                <v-icon
-                    small
-                    @click="deleteUser(item)"
-                >
-                    mdi-delete
-                </v-icon>
-            </template>
-            <template v-slot:no-data>
-                No users
+                <v-icon small class="mr-2" @click="editUser(item)">mdi-pencil</v-icon>
+                <v-icon small @click="deleteUser(item)">mdi-delete</v-icon>
             </template>
         </v-data-table>
     </div>
@@ -80,11 +54,11 @@ export default {
     },
     methods: {
         deleteUser (user) {
-            this.deleteIndex = user.id;
+            this.deleteIndex = this.users.indexOf(user);
             this.dialogDelete = true;
         },
         deleteUserConfirm () {
-            console.log('Delete user '+this.deleteIndex);
+            console.log('Delete user '+this.users[this.deleteIndex]['email']);
             this.closeDelete();
         },
         closeDelete () {
@@ -97,6 +71,9 @@ export default {
         editUser (user) {
             console.log('Edit user '+ user.id);
         },
+        userToDelete (){
+            return this.deleteIndex!=-1 ? this.users[this.deleteIndex]['email'] : '';
+        }
     }
 };
 </script>

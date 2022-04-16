@@ -1,4 +1,8 @@
 {
+    "global": {
+        "cancel": "Cancelar",
+        "delete": "Eliminar"
+    },
     "login": {
         "title" : "Inicia sessión",
         "subtitle" : "para entrar al panel de administración de atikarooms",
@@ -21,7 +25,9 @@
     },
     "users":{
         "management":{
-            "title": "administración de usuarios"
+            "title": "Usuarios",
+            "addUser": "Crear user",
+            "deleteText": "¿Está seguro de que desea eliminar el usuario \"{userMail}\"?"
         }
     }
 }
