@@ -20,7 +20,7 @@
         "rooms" : "Habitaciones"
     },
     "header": {
-        "title" : "Administración Atikarooms",
+        "title" : "Atikarooms",
         "logout" : "Cerrar sesión"
     },
     "users":{
