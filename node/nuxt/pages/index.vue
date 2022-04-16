@@ -26,21 +26,20 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 export default {
-    computed: Object.assign(
-        mapGetters('logged-user', {
+    computed: {
+        ...mapGetters('logged-user', {
             email: 'email',
             name: 'name',
         }),
-    ),
-    methods: Object.assign(
-        mapActions('logged-user', {
+    },
+    methods: {
+        ...mapActions('logged-user', {
             userLogout: 'logout',
-        }),{
-            async logout(){
-                await this.userLogout();
-                this.$router.push('/login');
-            }
+        }),
+        async logout(){
+            await this.userLogout();
+            this.$router.push('/login');
         }
-    )
+    }
 };
 </script>

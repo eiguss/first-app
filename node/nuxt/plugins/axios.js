@@ -1,4 +1,4 @@
-export default function ({ store }) {
+export default function ({ store, route }) {
     store.$axios.interceptors.response.use(
         (response) => {
             store.commit('global/END_LOADING');
@@ -8,6 +8,7 @@ export default function ({ store }) {
             store.commit('global/END_LOADING');
             // If 401, user not logged in, redirect to login page
             if(error.response.status===401){
+                store.commit('global/SET_REDIRECT_PATH', route.path);
                 store.$router.push('/login');
             }else if(error.response.status===403){
                 // TODO redirect to unathorized

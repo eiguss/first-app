@@ -1,9 +1,11 @@
 export const state = () => ({
     loading:0,
+    redirectPath:'/',
 });
 
 export const getters = {
     loading: state => state.loading>0,
+    redirectPath: state => state.redirectPath,
 };
 
 export const mutations = {
@@ -14,6 +16,9 @@ export const mutations = {
         if(state.loading > 0) {
             --state.loading;
         }
+    },
+    SET_REDIRECT_PATH(state, redirectPath) {
+        state.redirectPath=redirectPath;
     },
 };
 

@@ -12,11 +12,11 @@
 <script>
 import { mapGetters } from 'vuex';
 export default {
-    computed: Object.assign(
-        mapGetters('global', {
+    computed: {
+        ...mapGetters('global', {
             isLoading: 'loading',
         }),
-    )
+    }
 };
 </script>
 

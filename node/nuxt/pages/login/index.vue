@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 export default {
     layout() {
         return 'none';
@@ -79,26 +79,30 @@ export default {
             password: '',
         };
     },
-    methods: Object.assign(
-        mapActions('logged-user', {
+    computed: {
+        ...mapGetters('global', {
+            redirectPath: 'redirectPath',
+        }),
+    },
+    methods:{
+        ...mapActions('logged-user', {
             userLogin: 'login',
-        }),{
-            async login(){
-                var userLogedIn = await this.userLogin({
-                    email: this.email,
-                    password: this.password
-                });
+        }),
+        async login(){
+            var userLogedIn = await this.userLogin({
+                email: this.email,
+                password: this.password
+            });
 
-                if(userLogedIn){
-                    this.userLogged=true;
-                    setTimeout(()=>{ this.$router.push('/'); }, 1000);
-                }else{
-                    this.showError=true;
-                    this.email='';
-                    this.password='';
-                }
+            if(userLogedIn){
+                this.userLogged=true;
+                this.$router.push(this.redirectPath);
+            }else{
+                this.showError=true;
+                this.email='';
+                this.password='';
             }
         }
-    )
+    }
 };
 </script>
