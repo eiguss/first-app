@@ -11,7 +11,7 @@ class getUsersController extends _BaseUsersController
     {
         $response->getBody()->write(
             json_encode([
-                'user_info' => $this->usersService->getUsers(),
+                'users_info' => $this->usersService->getUsers(),
             ])
         );
 

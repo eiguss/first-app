@@ -18,5 +18,10 @@
     "header": {
         "title" : "Administración Atikarooms",
         "logout" : "Cerrar sesión"
+    },
+    "users":{
+        "management":{
+            "title": "administración de usuarios"
+        }
     }
 }

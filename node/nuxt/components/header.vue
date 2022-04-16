@@ -1,6 +1,5 @@
 <template>
     <v-app-bar
-        absolute
         color="white"
         elevation="3"
     >

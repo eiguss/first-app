@@ -11,13 +11,8 @@ class getUserInfoController extends _BaseLoggedUserController
     {
         $response->getBody()->write(
             json_encode([
-                'user_info' => array_merge(
-                    $this->loggedUserService->getUserInfo(),
-                    [
-                        // This is called on load a page, generating a new CSRF token
-                        'token' => $this->csrfTokenManager->generateCsrfToken()
-                    ]
-                )
+                'user_info' => $this->loggedUserService->getUserInfo(),
+                'token' => $this->csrfTokenManager->generateCsrfToken(), // This is called on load a page, generating a new CSRF token
             ])
         );
 

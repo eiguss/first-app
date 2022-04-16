@@ -1,9 +1,19 @@
 .v-application{
+    .v-toolbar.v-app-bar{
+        flex: 0 1 auto;
+    }
     .v-main{
         &__wrap{
+            .container {
+                margin-top: 20px;
+            }
             .v-btn.complementary{
                 @include complementary-button;
             }
         }
+    }
+    h2{
+        font-size: 24px;
+        font-weight: 500;
     }
 }

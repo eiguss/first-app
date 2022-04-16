@@ -74,8 +74,8 @@ class LoggedUserService
     {
         return [
             'id' => 1,
-            'email' => 'Admin@test.com',
-            'name' => 'Admin',
+            'email' => 'root@test.com',
+            'name' => 'Root Test',
             'creation_date' => 1650058268,
             'language' => [
                 'id' => 1,

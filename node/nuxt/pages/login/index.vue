@@ -1,5 +1,6 @@
 <template>
     <div class="login-page">
+        {{loggedUserEmail}}
         <v-card
             class="mx-auto my-12"
             max-width="500"
@@ -12,7 +13,7 @@
             </v-card-subtitle>
             <v-divider></v-divider>
             <v-card-text @keyup.enter="login">
-                <template v-if="!userLogged">
+                <template v-if="loggedUserEmail===''">
                     <v-alert
                         v-if="showError"
                         dense
@@ -45,7 +46,7 @@
                     </v-alert>
                 </template>
             </v-card-text>
-            <v-card-actions v-if="!userLogged">
+            <v-card-actions v-if="loggedUserEmail===''">
                 <v-btn
                     :disabled="password==''||email==''"
                     @click="login"
@@ -74,7 +75,6 @@ export default {
         return {
             showPassword: false,
             showError: false,
-            userLogged: false,
             email: '',
             password: '',
         };
@@ -82,6 +82,9 @@ export default {
     computed: {
         ...mapGetters('global', {
             redirectPath: 'redirectPath',
+        }),
+        ...mapGetters('logged-user', {
+            loggedUserEmail: 'email',
         }),
     },
     methods:{
@@ -95,7 +98,6 @@ export default {
             });
 
             if(userLogedIn){
-                this.userLogged=true;
                 this.$router.push(this.redirectPath);
             }else{
                 this.showError=true;

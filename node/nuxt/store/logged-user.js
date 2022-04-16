@@ -5,7 +5,7 @@ export const state = () => ({
     locale: 'en',
     acronym: '',
     role: '',
-    rights: []
+    rights: [],
 });
 
 export const getters = {
@@ -21,7 +21,6 @@ export const mutations = {
     SET_USER(state, user) {
         state.email = user.email;
         state.name = user.name;
-        state.token = user.token;
         state.locale = user.locale;
         state.role = user.role;
         state.rights = user.rights;
@@ -32,6 +31,15 @@ export const mutations = {
             state.acronym += fullName[1].charAt(0).toUpperCase();
         }
         this.$i18n.locale = state.locale;
+    },
+    RESET_USER(state){
+        state.email = '';
+        state.name = '';
+        state.token = '';
+        state.locale = 'en';
+        state.acronym = '';
+        state.role = '';
+        state.rights = [];
     },
     SET_TOKEN(state, token) {
         state.token = token;
@@ -44,6 +52,7 @@ export const actions = {
             'api/logged-user'
         ).then(response => { 
             commit('SET_USER', response.data.user_info);
+            commit('SET_TOKEN', response.data.token);
         });
     },
     async isLoggedUser({ commit }) {
@@ -72,13 +81,14 @@ export const actions = {
             return false;
         });
     },
-    async logout() {
+    async logout({ commit }) {
         return await this.$axios.post(
             'api/logged-user/logout'
         ).then(() => {
+            commit('RESET_USER');
             this.$router.push('/login');
             return true;
-        }).catch(() => {
+        }).catch((e) => {
             return false;
         });
     },
