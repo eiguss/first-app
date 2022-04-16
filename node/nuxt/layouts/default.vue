@@ -1,5 +1,5 @@
 <template>
-    <v-app>
+    <v-app v-if="userEmail!==''">
         <app-header></app-header>
         <sidebar></sidebar>
         <v-main>
@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import sidebar from '../components/sidebar.vue';
 import appHeader from '../components/header.vue';
 export default {
@@ -19,5 +20,10 @@ export default {
         appHeader,
     },
     middleware: ['auth'],
+    computed: {
+        ...mapGetters('logged-user', {
+            userEmail: 'email',
+        }),
+    },
 }
 </script>
