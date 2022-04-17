@@ -43,7 +43,10 @@ export default {
             if (item.active===false) { 
                 return 'disabled';
             }
-        }
+        },
+        search () {
+            console.log(this.searchInput);
+        },
     }
 };
 </script>

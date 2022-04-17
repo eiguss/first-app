@@ -1,5 +1,6 @@
 <template>
     <div>
+    {{searchInput}}
         <v-data-table
             :headers="headers"
             :items="items"
@@ -11,6 +12,17 @@
                 <v-toolbar flat>
                     <v-toolbar-title>{{ $t(labelsRoute.title) }}</v-toolbar-title>
                     <v-spacer></v-spacer>
+                    <v-text-field
+                        v-if="searchActive"
+                        v-model="searchInput"
+                        append-icon="mdi-magnify"
+                        label="Search"
+                        single-line
+                        hide-details
+                        clearable
+                        class="mr-8 search-input"
+                        @keyup="search"
+                    ></v-text-field>
                     <v-dialog
                         v-model="dialog"
                         max-width="500px"
@@ -82,6 +94,8 @@ export default {
             dialogDelete: false,
             editIndex: -1,
             editedItem: {},
+            searchActive: true,
+            searchInput: '',
             /* Rewritte labelsRoute on mix */
             labelsRoute: {
                 title: '',
@@ -156,7 +170,10 @@ export default {
             this.editIndex = -1;
         },
         /* Rewritte item methods on mix */
-        itemToDelete (){
+        search () {
+            // called on search input change. Value of the input in this.searchInput
+        },
+        itemToDelete () {
             // This needs to return the item identifier for delete text.
             // Example: return this.items[this.editIndex] ? this.items[this.editIndex]['name'] : '';
             return '';

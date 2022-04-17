@@ -1,9 +1,9 @@
-.v-application{
-    .v-toolbar.v-app-bar{
+.v-application {
+    .v-toolbar.v-app-bar {
         flex: 0 1 auto;
     }
-    .v-main{
-        &__wrap{
+    .v-main {
+        &__wrap {
             .container {
                 margin-top: 20px;
             }
@@ -12,18 +12,21 @@
             }
         }
         .table-item-management-mixin {
-            tr.disabled{
+            tr.disabled {
                 background-color: $disabled-row;
-                :hover{
+                :hover {
                     background-color: $disabled-row-hover;
                 }
+            }
+            .search-input {
+                max-width: 350px;
             }
         }
     }
     .v-card__title {
         word-break: break-word;
     }
-    h2{
+    h2 {
         font-size: 24px;
         font-weight: 500;
     }
