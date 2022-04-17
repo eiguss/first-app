@@ -14,6 +14,8 @@ class RightsMiddleware
 
     private $routesRight = [
         'getUsers' => 'users_management',
+        'getRoles' => 'roles_management',
+        'getRights' => 'rights_management',
     ];
 
     public function __construct(User $user) {

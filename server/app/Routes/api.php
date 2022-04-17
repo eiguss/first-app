@@ -21,5 +21,24 @@ $app->group('/api', function (RouteCollectorProxy $app) {
             ->setName('getUsers')
             ->add(RightsMiddleware::class)
             ->add(AuthMiddleware::class);
-    }); 
+    });
+    $app->group('/roles', function (RouteCollectorProxy $app) {
+        $app->get('', App\Controllers\Roles\getRolesController::class)
+            ->setName('getRoles')
+            ->add(RightsMiddleware::class)
+            ->add(AuthMiddleware::class);
+    });
+    $app->group('/rights', function (RouteCollectorProxy $app) {
+        $app->get('', App\Controllers\Rights\getRightsController::class)
+            ->setName('getRights')
+            ->add(RightsMiddleware::class)
+            ->add(AuthMiddleware::class);
+    });
+
+    $app->get('/[{path:.*}]', function (Request $request, Response $response, $args) {
+        $response->getBody()->write('Route not found');
+    
+        return $response->withStatus(404);
+    })
+    ->add(AuthMiddleware::class);
 });

@@ -1,5 +1,5 @@
 <template>
-    <v-app v-if="userEmail!==''">
+    <v-app>
         <app-header></app-header>
         <sidebar></sidebar>
         <v-main>

@@ -21,8 +21,8 @@ export default {
         ...mapGetters('users-management', {
             items: 'users',
             headers: 'headers',
-            itemFields: 'userFields',
-            defaultNewItem: 'defaultNewUser',
+            itemFields: 'fields',
+            defaultNewItem: 'defaultNew',
         }),
     },
     methods: {

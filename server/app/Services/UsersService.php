@@ -7,13 +7,13 @@ class UsersService
     public function getUsers()
     {
         // TODO service call
-        return $this->formatUsersData( $this->getUsersData() );
+        return $this->formatData( $this->getUsersData() );
     }
 
-    private function formatUsersData($users)
+    private function formatData($users)
     {
         $formattedUsers = [];
-        foreach ($users as $key => $user) {
+        foreach ($users as $user) {
             $formattedUsers[] = [
                 'id' => $user['id'],
                 'email' => $user['email'],
@@ -31,7 +31,7 @@ class UsersService
     private function getUsersData()
     {
         return [
-            '1' => [
+            [
                 'id' => 1,
                 'email' => 'root@test.com',
                 'name' => 'Root Test',
@@ -46,7 +46,7 @@ class UsersService
                     'name' => 'Root',
                 ],
             ],
-            '2' => [
+            [
                 'id' => 2,
                 'email' => 'administrator@test.com',
                 'name' => 'Admin',

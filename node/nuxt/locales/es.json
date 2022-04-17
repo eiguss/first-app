@@ -32,5 +32,21 @@
             "editUser": "Editar user",
             "deleteText": "¿Está seguro de que desea eliminar el usuario \"{item}\"?"
         }
+    },
+    "roles":{
+        "management":{
+            "title": "Roles",
+            "addUser": "Crear rol",
+            "editUser": "Editar rol",
+            "deleteText": "¿Está seguro de que desea eliminar el rol \"{item}\"?"
+        }
+    },
+    "rights":{
+        "management":{
+            "title": "Permisos",
+            "addUser": "Crear permiso",
+            "editUser": "Editar permiso",
+            "deleteText": "¿Está seguro de que desea eliminar el permiso \"{item}\"?"
+        }
     }
 }

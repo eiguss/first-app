@@ -88,7 +88,7 @@ export const actions = {
             commit('RESET_USER');
             this.$router.push('/login');
             return true;
-        }).catch((e) => {
+        }).catch(() => {
             return false;
         });
     },

@@ -32,5 +32,21 @@
             "editUser": "Edit user",
             "deleteText": "Are you sure you want to delete the user \"{item}\"?"
         }
+    },
+    "roles":{
+        "management":{
+            "title": "Roles",
+            "addUser": "Add role",
+            "editUser": "Edit role",
+            "deleteText": "Are you sure you want to delete the role \"{item}\"?"
+        }
+    },
+    "rights":{
+        "management":{
+            "title": "Rights",
+            "addUser": "Add right",
+            "editUser": "Edit right",
+            "deleteText": "Are you sure you want to delete the right \"{item}\"?"
+        }
     }
 }
