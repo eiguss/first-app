@@ -67,7 +67,7 @@ class UsersService
             [
                 'id' => 3,
                 'email' => 'laura.atilarooms@hotmail.com',
-                'name' => 'Laure Gimenez',
+                'name' => 'Laura Gimenez',
                 'creation_date' => 1650058268,
                 'active' => false,
                 'language' => [
