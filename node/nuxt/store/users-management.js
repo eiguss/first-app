@@ -5,6 +5,7 @@ export const state = () => ({
         { text: 'Email', value: 'email' },
         { text: 'Role', value: 'role' },
         { text: 'Language', value: 'language_name' },
+        { text: 'Active', value: 'active' },
         { text: 'Actions', value: 'actions', sortable: false },
     ],
     fields: [
@@ -19,13 +20,25 @@ export const state = () => ({
         role: '',
         language_name: '',
     },
+    actions: [
+        {
+            name:'edit',
+            icon:'mdi-pencil',
+        },
+        {
+            name:'disable_enable',
+            icon:'mdi-cancel',
+            iconEnable:'mdi-check',
+        },
+    ],
 });
 
 export const getters = {
     users: state => state.users,
     headers: state => state.headers,
     fields: state => state.fields,
-    defaultNewUser: state => state.defaultNewUser,
+    defaultNew: state => state.defaultNew,
+    actions: state => state.actions,
 };
 
 export const mutations = {

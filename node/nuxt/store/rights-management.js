@@ -13,6 +13,16 @@ export const state = () => ({
         name: '',
         description: '',
     },
+    actions: [
+        {
+            name:'edit',
+            icon:'mdi-pencil',
+        },
+        {
+            name:'delete',
+            icon:'mdi-delete',
+        },
+    ],
 });
 
 export const getters = {
@@ -20,6 +30,7 @@ export const getters = {
     headers: state => state.headers,
     fields: state => state.fields,
     defaultNew: state => state.defaultNew,
+    actions: state => state.actions,
 };
 
 export const mutations = {

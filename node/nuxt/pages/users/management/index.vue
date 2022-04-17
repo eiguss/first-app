@@ -10,9 +10,9 @@ export default {
         return {
             labelsRoute: {
                 title: 'users.management.title',
-                addItemButton: 'users.management.addUser',
-                modalCreateTitle:  'users.management.editUser',
-                modalEditTitle: 'users.management.addUser',
+                addItemButton: 'users.management.add',
+                modalCreateTitle:  'users.management.add',
+                modalEditTitle: 'users.management.edit',
                 modalDeleteText: 'users.management.deleteText',
             }
         };
@@ -23,11 +23,12 @@ export default {
             headers: 'headers',
             itemFields: 'fields',
             defaultNewItem: 'defaultNew',
+            actions: 'actions',
         }),
     },
     methods: {
         itemToDelete (){
-            return this.items[this.deleteIndex] ? this.items[this.deleteIndex]['email'] : '';
+            return this.items[this.editIndex] ? this.items[this.editIndex]['email'] : '';
         },
         editItem () {
             console.log('Edit item ' + this.editedItem['email']);
@@ -35,8 +36,8 @@ export default {
         addItem () {
             console.log('Add item ' + this.editedItem['email']);
         },
-        deleteItem () {
-            console.log('Delete item ' + this.items[this.deleteIndex]['email']);
+        disableEnableItem () {
+            console.log('Disable/enable item ' + this.items[this.editIndex]['email']);
         },
     }
 };

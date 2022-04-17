@@ -51,7 +51,7 @@
                     </v-dialog>
                     <v-dialog v-model="dialogDelete" max-width="500px">
                         <v-card>
-                            <v-card-title>{{ $t(labelsRoute.modalDeleteText, { userMail: itemToDelete()}) }}</v-card-title>
+                            <v-card-title>{{ $t(labelsRoute.modalDeleteText, { item: itemToDelete()}) }}</v-card-title>
                             <v-card-actions>
                                 <v-spacer></v-spacer>
                                 <v-btn color="red darken-1" text @click="remove">{{$t('global.delete')}}</v-btn>
@@ -63,8 +63,11 @@
                 </v-toolbar>
             </template>
             <template v-slot:item.actions="{ item }">
-                <v-icon small class="mr-2" @click="actionEditItem(item)">mdi-pencil</v-icon>
-                <v-icon small @click="actionDeleteItem(item)">mdi-delete</v-icon>
+                <v-icon small class="mr-2"
+                    v-for="action in actions"
+                    :key="action.name"
+                    @click="actionEvent(item, action.name)"
+                >{{ ( action.name=='disable_enable' && !item.active ) ? action.iconEnable : action.icon }}</v-icon>
             </template>
         </v-data-table>
     </div>
@@ -76,7 +79,6 @@ export default {
         return {
             dialog: false,
             dialogDelete: false,
-            deleteIndex: -1,
             editIndex: -1,
             editedItem: {},
             /* Rewritte labelsRoute on mix */
@@ -95,11 +97,30 @@ export default {
         headers(){return []},
         itemFields(){return []},
         defaultNewItem(){return []},
+        actions(){return []},
     },
     methods: {
+        actionEvent(item, action) {
+            switch (action) {
+                case 'edit':
+                    this.actionEditItem(item)
+                    break;
+                case 'delete':
+                    this.actionDeleteItem(item)
+                    break;
+                case 'disable_enable':
+                    this.actionDisableEnableItem(item)
+                    break;
+            }
+        },
         actionAddItem () {
             this.editIndex = -1;
             this.editedItem = Object.assign({}, this.defaultNewItem);
+        },
+        actionDisableEnableItem (item) {
+            this.editIndex = this.items.indexOf(item);
+            this.editedItem = Object.assign({}, item);
+            this.disableEnableItem();
         },
         actionEditItem (item) {
             this.editIndex = this.items.indexOf(item);
@@ -107,7 +128,7 @@ export default {
             this.dialog = true;
         },
         actionDeleteItem (item) {
-            this.deleteIndex = this.items.indexOf(item);
+            this.editIndex = this.items.indexOf(item);
             this.dialogDelete = true;
         },
         save () {
@@ -136,7 +157,7 @@ export default {
         /* Rewritte item methods on mix */
         itemToDelete (){
             // This needs to return the item identifier for delete text.
-            // Example: return this.items[this.deleteIndex] ? this.items[this.deleteIndex]['name'] : '';
+            // Example: return this.items[this.editIndex] ? this.items[this.editIndex]['name'] : '';
             return '';
         },
         editItem () {
@@ -146,7 +167,10 @@ export default {
             // TODO action to add an item. New item on this.editedItem
         },
         deleteItem () {
-            // TODO action to delete an item. Index of the deleted item: this.deleteIndex
+            // TODO action to delete an item. Index of the deleted item: this.editIndex
+        },
+        disableEnableItem () {
+            // TODO action to disable/enable an item. Index of the item: this.editIndex
         },
     }
 };

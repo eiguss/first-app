@@ -3,19 +3,29 @@ export const state = () => ({
     headers: [
         { text: 'Name',value: 'name' },
         { text: 'Description', value: 'description' },
-        { text: 'Rights', value: 'rights' },
+        { text: 'Rights', value: 'rights_string' },
         { text: 'Actions', value: 'actions', sortable: false },
     ],
     fields: [
         { text: 'Name',value: 'name' },
         { text: 'Description', value: 'description' },
-        { text: 'Rights', value: 'rights' },
+        { text: 'Rights', value: 'rights_string' },
     ],
     defaultNew: {
         name: '',
         description: '',
-        rights: [],
+        rights_string: '',
     },
+    actions: [
+        {
+            name:'edit',
+            icon:'mdi-pencil',
+        },
+        {
+            name:'delete',
+            icon:'mdi-delete',
+        },
+    ],
 });
 
 export const getters = {
@@ -23,6 +33,7 @@ export const getters = {
     headers: state => state.headers,
     fields: state => state.fields,
     defaultNew: state => state.defaultNew,
+    actions: state => state.actions,
 };
 
 export const mutations = {

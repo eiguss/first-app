@@ -28,24 +28,24 @@
     "users":{
         "management":{
             "title": "Users",
-            "addUser": "Add user",
-            "editUser": "Edit user",
+            "add": "Add user",
+            "edit": "Edit user",
             "deleteText": "Are you sure you want to delete the user \"{item}\"?"
         }
     },
     "roles":{
         "management":{
             "title": "Roles",
-            "addUser": "Add role",
-            "editUser": "Edit role",
+            "add": "Add role",
+            "edit": "Edit role",
             "deleteText": "Are you sure you want to delete the role \"{item}\"?"
         }
     },
     "rights":{
         "management":{
             "title": "Rights",
-            "addUser": "Add right",
-            "editUser": "Edit right",
+            "add": "Add right",
+            "edit": "Edit right",
             "deleteText": "Are you sure you want to delete the right \"{item}\"?"
         }
     }

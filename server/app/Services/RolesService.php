@@ -12,7 +12,22 @@ class RolesService
 
     private function formatData($roles)
     {
-        return $roles;
+        $formattedRoles = [];
+        foreach ($roles as $role) {
+            $rights = [];
+            foreach ($role['rights'] as $right) {
+                $rights[]=$right['name'];
+            }
+            $formattedRoles[] = [
+                'id' => $role['id'],
+                'name' => $role['name'],
+                'description' => $role['description'],
+                'rights' => $role['rights'],
+                'rights_string' => implode(',', $rights),
+            ];
+        }
+
+        return $formattedRoles;
     }
 
     private function getRolesData()
@@ -25,7 +40,7 @@ class RolesService
                 'rights' => [
                     [
                         'id' => 1,
-                        'name' => 'users_management',
+                        'name' => 'roles_management',
                     ],
                     [
                         'id' => 2,
@@ -44,10 +59,10 @@ class RolesService
             [
                 'id' => 2,
                 'name' => 'Administrator',
-                'description' => 'Role with all rights except manage roles and rights','rights' => [
+                'description' => 'Role with all rights except roles and rights management','rights' => [
                     [
                         'id' => 1,
-                        'name' => 'users_management',
+                        'name' => 'roles_management',
                     ],
                     [
                         'id' => 4,
