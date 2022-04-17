@@ -12,14 +12,20 @@ export const state = () => ({
         { text: 'Email', value: 'email' },
         { text: 'Role', value: 'role' },
         { text: 'Language', value: 'language_name' },
-    ]
-
+    ],
+    defaultNewUser: {
+        name: '',
+        email: '',
+        role: '',
+        language_name: '',
+    },
 });
 
 export const getters = {
     users: state => state.users,
     headers: state => state.headers,
     userFields: state => state.userFields,
+    defaultNewUser: state => state.defaultNewUser,
 };
 
 export const mutations = {

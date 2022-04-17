@@ -30,7 +30,7 @@
             "title": "Usuarios",
             "addUser": "Crear user",
             "editUser": "Editar user",
-            "deleteText": "¿Está seguro de que desea eliminar el usuario \"{userMail}\"?"
+            "deleteText": "¿Está seguro de que desea eliminar el usuario \"{item}\"?"
         }
     }
 }
