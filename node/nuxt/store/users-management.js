@@ -5,7 +5,6 @@ export const state = () => ({
         { text: 'Email', value: 'email' },
         { text: 'Role', value: 'role' },
         { text: 'Language', value: 'language_name' },
-        { text: 'Active', value: 'active' },
         { text: 'Actions', value: 'actions', sortable: false },
     ],
     fields: [

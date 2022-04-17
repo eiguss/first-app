@@ -3,8 +3,9 @@
         <v-data-table
             :headers="headers"
             :items="items"
+            :item-class= "rowClasses"
             sort-by="calories"
-            class="elevation-1"
+            class="elevation-1 table-item-management-mixin"
         >
             <template v-slot:top>
                 <v-toolbar flat>
@@ -172,6 +173,10 @@ export default {
         disableEnableItem () {
             // TODO action to disable/enable an item. Index of the item: this.editIndex
         },
+        rowClasses (item) {
+            // TODO customize it if you want to have row with an specific class
+            // Example: if (item.active===false) { return 'disabled' }
+        }
     }
 };
 </script>

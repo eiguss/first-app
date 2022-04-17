@@ -39,6 +39,11 @@ export default {
         disableEnableItem () {
             console.log('Disable/enable item ' + this.items[this.editIndex]['email']);
         },
+        rowClasses (item) {
+            if (item.active===false) { 
+                return 'disabled';
+            }
+        }
     }
 };
 </script>

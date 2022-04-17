@@ -11,6 +11,14 @@
                 @include complementary-button;
             }
         }
+        .table-item-management-mixin {
+            tr.disabled{
+                background-color: $disabled-row;
+                :hover{
+                    background-color: $disabled-row-hover;
+                }
+            }
+        }
     }
     .v-card__title {
         word-break: break-word;
