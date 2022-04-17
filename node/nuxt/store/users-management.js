@@ -7,12 +7,19 @@ export const state = () => ({
         { text: 'Language', value: 'language_name' },
         { text: 'Actions', value: 'actions', sortable: false },
     ],
+    userFields: [
+        { text: 'Name',value: 'name' },
+        { text: 'Email', value: 'email' },
+        { text: 'Role', value: 'role' },
+        { text: 'Language', value: 'language_name' },
+    ]
 
 });
 
 export const getters = {
     users: state => state.users,
     headers: state => state.headers,
+    userFields: state => state.userFields,
 };
 
 export const mutations = {

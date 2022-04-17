@@ -1,6 +1,8 @@
 {
     "global": {
         "cancel": "Cancelar",
+        "edit": "Editar",
+        "create": "Crear",
         "delete": "Eliminar"
     },
     "login": {
@@ -27,6 +29,7 @@
         "management":{
             "title": "Usuarios",
             "addUser": "Crear user",
+            "editUser": "Editar user",
             "deleteText": "¿Está seguro de que desea eliminar el usuario \"{userMail}\"?"
         }
     }
