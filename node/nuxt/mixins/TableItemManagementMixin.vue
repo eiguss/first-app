@@ -79,7 +79,13 @@
                     v-for="action in actions"
                     :key="action.name"
                     @click="actionEvent(item, action.name)"
-                >{{ ( action.name=='disable_enable' && !item.active ) ? action.iconEnable : action.icon }}</v-icon>
+                >{{ action.icon }}</v-icon>
+            </template>
+            <template v-slot:item.active="{ item }">
+                <v-simple-checkbox 
+                    :value="item.active"
+                    @click="actionEvent(item,'disable_enable')"
+                ></v-simple-checkbox>
             </template>
         </v-data-table>
     </div>

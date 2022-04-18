@@ -14,7 +14,7 @@
         .table-item-management-mixin {
             tr.disabled {
                 background-color: $disabled-row;
-                :hover {
+                &:hover {
                     background-color: $disabled-row-hover;
                 }
             }
