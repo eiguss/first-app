@@ -18,10 +18,6 @@ export const state = () => ({
             name:'edit',
             icon:'mdi-pencil',
         },
-        {
-            name:'delete',
-            icon:'mdi-delete',
-        },
     ],
 });
 
@@ -37,6 +33,12 @@ export const mutations = {
     SET_RIGHTS(state, rights) {
         state.rights=rights;
     },
+    SET_RIGHT(state, right) {
+        state.rights.push(right);
+    },
+    EDIT_RIGHT(state, {right, index}) {
+        Object.assign(state.rights[index], right);
+    }
 };
 
 export const actions = {
@@ -48,5 +50,26 @@ export const actions = {
         }).catch(() => {
             return false;
         });
+    },
+    async addRight({ commit, state }, right) {
+        // return await this.$axios.post(
+        //     'api/rights', right
+        // ).then(response => {
+            // let id = response.data.id;
+            let id = state.rights.length+1;
+            right.id = id;
+            commit('SET_RIGHT', right);
+        // }).catch(() => {
+        //     return false;
+        // });
+    },
+    async editRight({ commit }, {right, index}) {
+        // return await this.$axios.post(
+        //     'api/rights/'+right.id, right
+        // ).then(response => {
+            commit('EDIT_RIGHT', { right: right, index: index });
+        // }).catch(() => {
+        //     return false;
+        // });
     },
 };

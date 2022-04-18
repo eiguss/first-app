@@ -1,5 +1,5 @@
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import TableItemManagementMixin from "@/mixins/TableItemManagementMixin.vue";
 export default {
     mixins: [TableItemManagementMixin],
@@ -27,17 +27,15 @@ export default {
         }),
     },
     methods: {
-        itemToDelete (){
-            return this.editIndex>-1 ? this.items[this.editIndex]['name'] : '';
-        },
+        ...mapActions('rights-management', {
+            addRight: 'addRight',
+            editRight: 'editRight',
+        }),
         editItem () {
-            console.log('Edit item ' + this.editedItem['name']);
+            this.editRight( { right: this.editedItem, index: this.editedIndex} );
         },
         addItem () {
-            console.log('Add item ' + this.editedItem['name']);
-        },
-        deleteItem () {
-            console.log('Delete item ' + this.items[this.editIndex]['name']);
+            this.addRight(this.editedItem);
         },
     }
 };

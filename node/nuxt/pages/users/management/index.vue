@@ -28,7 +28,7 @@ export default {
     },
     methods: {
         itemToDelete (){
-            return this.items[this.editIndex] ? this.items[this.editIndex]['email'] : '';
+            return this.items[this.editedIndex] ? this.items[this.editedIndex]['email'] : '';
         },
         editItem () {
             console.log('Edit item ' + this.editedItem['email']);
@@ -37,7 +37,7 @@ export default {
             console.log('Add item ' + this.editedItem['email']);
         },
         disableEnableItem () {
-            console.log('Disable/enable item ' + this.items[this.editIndex]['email']);
+            console.log('Disable/enable item ' + this.items[this.editedIndex]['email']);
         },
         rowClasses (item) {
             if (item.active===false) { 

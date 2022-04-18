@@ -34,7 +34,7 @@
                         <v-card>
                             <v-card-title>
                                 <span class="text-h5">
-                                    {{ editIndex>-1 ?  $t(labelsRoute.modalEditTitle) :  $t(labelsRoute.modalCreateTitle) }}
+                                    {{ editedIndex>-1 ?  $t(labelsRoute.modalEditTitle) :  $t(labelsRoute.modalCreateTitle) }}
                                 </span>
                             </v-card-title>
                             <v-card-text>
@@ -55,7 +55,7 @@
                             <v-card-actions>
                                 <v-spacer></v-spacer>
                                 <v-btn color="blue darken-1" text @click="save">
-                                    {{ editIndex>-1 ? $t('global.edit') : $t('global.create')}}
+                                    {{ editedIndex>-1 ? $t('global.edit') : $t('global.create')}}
                                 </v-btn>
                                 <v-btn color="darken-1" text @click="close">{{$t('global.cancel')}}</v-btn>
                             </v-card-actions>
@@ -91,7 +91,7 @@ export default {
         return {
             dialog: false,
             dialogDelete: false,
-            editIndex: -1,
+            editedIndex: -1,
             editedItem: {},
             searchActive: true,
             searchInput: '',
@@ -128,25 +128,25 @@ export default {
             }
         },
         actionAddItem () {
-            this.editIndex = -1;
+            this.editedIndex = -1;
             this.editedItem = Object.assign({}, this.defaultNewItem);
         },
         actionDisableEnableItem (item) {
-            this.editIndex = this.items.indexOf(item);
+            this.editedIndex = this.items.indexOf(item);
             this.editedItem = Object.assign({}, item);
             this.disableEnableItem();
         },
         actionEditItem (item) {
-            this.editIndex = this.items.indexOf(item);
+            this.editedIndex = this.items.indexOf(item);
             this.editedItem = Object.assign({}, item);
             this.dialog = true;
         },
         actionDeleteItem (item) {
-            this.editIndex = this.items.indexOf(item);
+            this.editedIndex = this.items.indexOf(item);
             this.dialogDelete = true;
         },
         save () {
-            if (this.editIndex > -1) {
+            if (this.editedIndex > -1) {
                 this.editItem();
             } else {
                 this.addItem();
@@ -157,7 +157,7 @@ export default {
             this.dialog = false;
             this.$nextTick(() => {
                 this.editedItem = Object.assign({}, this.defaultNewItem)
-                this.editIndex = -1
+                this.editedIndex = -1
             })
         },
         remove(){
@@ -166,25 +166,25 @@ export default {
         },
         closeDelete () {
             this.dialogDelete = false;
-            this.editIndex = -1;
+            this.editedIndex = -1;
         },
         /* Rewritte item methods on mix */
         itemToDelete () {
             // This needs to return the item identifier for delete text.
-            // Example: return this.items[this.editIndex] ? this.items[this.editIndex]['name'] : '';
+            // Example: return this.items[this.editedIndex] ? this.items[this.editedIndex]['name'] : '';
             return '';
         },
         editItem () {
-            // TODO action to edit an item. Edited item on this.editedItem, edited item index this.editIndex
+            // TODO action to edit an item. Edited item on this.editedItem, edited item index this.editedIndex
         },
         addItem () {
             // TODO action to add an item. New item on this.editedItem
         },
         deleteItem () {
-            // TODO action to delete an item. Index of the deleted item: this.editIndex
+            // TODO action to delete an item. Index of the deleted item: this.editedIndex
         },
         disableEnableItem () {
-            // TODO action to disable/enable an item. Index of the item: this.editIndex
+            // TODO action to disable/enable an item. Index of the item: this.editedIndex
         },
         rowClasses (item) {
             // TODO customize it if you want to have row with an specific class

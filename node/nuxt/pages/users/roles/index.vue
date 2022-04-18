@@ -28,7 +28,7 @@ export default {
     },
     methods: {
         itemToDelete (){
-            return this.items[this.editIndex] ? this.items[this.editIndex]['name'] : '';
+            return this.items[this.editedIndex] ? this.items[this.editedIndex]['name'] : '';
         },
         editItem () {
             console.log('Edit item ' + this.editedItem['name']);
@@ -37,7 +37,7 @@ export default {
             console.log('Add item ' + this.editedItem['name']);
         },
         deleteItem () {
-            console.log('Delete item ' + this.items[this.editIndex]['name']);
+            console.log('Delete item ' + this.items[this.editedIndex]['name']);
         },
     }
 };
