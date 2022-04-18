@@ -3,9 +3,9 @@ export const state = () => ({
     headers: [
         { text: 'Name',value: 'name' },
         { text: 'Email', value: 'email' },
-        { text: 'Role', value: 'role' },
-        { text: 'Language', value: 'language_name' },
-        { text: 'Actions', value: 'actions', sortable: false },
+        { text: 'Role', value: 'role', filterable: false },
+        { text: 'Language', value: 'language_name', filterable: false },
+        { text: 'Actions', value: 'actions', sortable: false, filterable: false },
     ],
     fields: [
         { text: 'Name',value: 'name' },

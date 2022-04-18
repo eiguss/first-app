@@ -44,9 +44,6 @@ export default {
                 return 'disabled';
             }
         },
-        search () {
-            console.log(this.searchInput);
-        },
     }
 };
 </script>

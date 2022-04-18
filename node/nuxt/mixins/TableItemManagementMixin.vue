@@ -1,12 +1,12 @@
 <template>
     <div>
-    {{searchInput}}
         <v-data-table
             :headers="headers"
             :items="items"
             :item-class= "rowClasses"
             sort-by="calories"
             class="elevation-1 table-item-management-mixin"
+            :search="searchInput"
         >
             <template v-slot:top>
                 <v-toolbar flat>
@@ -21,7 +21,6 @@
                         hide-details
                         clearable
                         class="mr-8 search-input"
-                        @keyup="search"
                     ></v-text-field>
                     <v-dialog
                         v-model="dialog"
@@ -170,9 +169,6 @@ export default {
             this.editIndex = -1;
         },
         /* Rewritte item methods on mix */
-        search () {
-            // called on search input change. Value of the input in this.searchInput
-        },
         itemToDelete () {
             // This needs to return the item identifier for delete text.
             // Example: return this.items[this.editIndex] ? this.items[this.editIndex]['name'] : '';

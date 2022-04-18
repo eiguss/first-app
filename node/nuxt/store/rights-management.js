@@ -2,8 +2,8 @@ export const state = () => ({
     rights: null,
     headers: [
         { text: 'Name',value: 'name' },
-        { text: 'Description', value: 'description' },
-        { text: 'Actions', value: 'actions', sortable: false },
+        { text: 'Description', value: 'description', filterable: false },
+        { text: 'Actions', value: 'actions', sortable: false, filterable: false },
     ],
     fields: [
         { text: 'Name',value: 'name' },
