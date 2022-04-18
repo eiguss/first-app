@@ -39,9 +39,6 @@ export default {
         deleteItem () {
             console.log('Delete item ' + this.items[this.editIndex]['name']);
         },
-        search () {
-            console.log(this.searchInput);
-        },
     }
 };
 </script>
