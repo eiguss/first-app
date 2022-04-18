@@ -21,10 +21,6 @@ export const state = () => ({
             name:'edit',
             icon:'mdi-pencil',
         },
-        {
-            name:'delete',
-            icon:'mdi-delete',
-        },
     ],
 });
 
@@ -40,6 +36,12 @@ export const mutations = {
     SET_ROLES(state, roles) {
         state.roles=roles;
     },
+    SET_ROLE(state, role) {
+        state.roles.push(role);
+    },
+    EDIT_ROLE(state, {role, index}) {
+        Object.assign(state.roles[index], role);
+    }
 };
 
 export const actions = {
@@ -51,5 +53,26 @@ export const actions = {
         }).catch(() => {
             return false;
         });
+    },
+    async addRole({ commit, state }, role) {
+        // return await this.$axios.post(
+        //     'api/roles', role
+        // ).then(response => {
+            // let id = response.data.id;
+            let id = state.roles.length+1;
+            role.id = id;
+            commit('SET_ROLE', role);
+        // }).catch(() => {
+        //     return false;
+        // });
+    },
+    async editRole({ commit }, {role, index}) {
+        // return await this.$axios.post(
+        //     'api/roles/'+role.id, role
+        // ).then(response => {
+            commit('EDIT_ROLE', { role: role, index: index });
+        // }).catch(() => {
+        //     return false;
+        // });
     },
 };

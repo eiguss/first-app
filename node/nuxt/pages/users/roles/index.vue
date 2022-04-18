@@ -1,5 +1,5 @@
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions  } from 'vuex';
 import TableItemManagementMixin from "@/mixins/TableItemManagementMixin.vue";
 export default {
     mixins: [TableItemManagementMixin],
@@ -27,17 +27,15 @@ export default {
         }),
     },
     methods: {
-        itemToDelete (){
-            return this.items[this.editedIndex] ? this.items[this.editedIndex]['name'] : '';
-        },
+        ...mapActions('roles-management', {
+            addRole: 'addRole',
+            editRole: 'editRole',
+        }),
         editItem () {
-            console.log('Edit item ' + this.editedItem['name']);
+            this.editRole( { role: this.editedItem, index: this.editedIndex} );
         },
         addItem () {
-            console.log('Add item ' + this.editedItem['name']);
-        },
-        deleteItem () {
-            console.log('Delete item ' + this.items[this.editedIndex]['name']);
+            this.addRole(this.editedItem);
         },
     }
 };
