@@ -30,6 +30,15 @@ export const getters = {
     editableFields: state => state.editableFields,
     defaultNew: state => state.defaultNew,
     actions: state => state.actions,
+    roleById: state => id => {
+        let role = null;
+        state.roles.forEach(element => {
+            if(element.id===id){
+                role=element;
+            }
+        });
+        return role;
+    }
 };
 
 export const mutations = {

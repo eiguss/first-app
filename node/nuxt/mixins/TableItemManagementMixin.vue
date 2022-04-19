@@ -43,10 +43,10 @@
                                         <v-col cols="12" sm="6" md="4"
                                             v-for="itemEditableField in itemEditableFields"
                                             :key="itemEditableField.value"
-                                        >   
+                                        >
                                             <v-select
                                                 v-if="itemEditableField.type==='dropdown'"
-                                                v-model="editedItem[itemEditableField.value]"
+                                                v-model="editedItem[itemEditableField.key]"
                                                 :items="data[itemEditableField.dataKey].items"
                                                 :item-text="data[itemEditableField.dataKey].textKey"
                                                 :item-value="data[itemEditableField.dataKey].valueKey"

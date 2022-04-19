@@ -12,21 +12,7 @@ class UsersService
 
     private function formatData($users)
     {
-        $formattedUsers = [];
-        foreach ($users as $user) {
-            $formattedUsers[] = [
-                'id' => $user['id'],
-                'email' => $user['email'],
-                'name' => $user['name'],
-                'creation_date' => $user['creation_date'],
-                'active' => $user['active'],
-                'language_name' =>$user['language']['name'],
-                'language_code' =>$user['language']['isoCode'],
-                'role' => $user['role']['name'],
-            ];
-        }
-
-        return $formattedUsers;
+        return $users;
     }
 
     private function getUsersData()

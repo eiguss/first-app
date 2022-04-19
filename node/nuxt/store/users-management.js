@@ -3,7 +3,7 @@ export const state = () => ({
     headers: [
         { text: 'Name',value: 'name' },
         { text: 'Email', value: 'email' },
-        { text: 'Role', value: 'role', filterable: false },
+        { text: 'Role', value: 'role_name', filterable: false },
         { text: 'Language', value: 'language_name', filterable: false },
         { text: 'Active', value: 'active', filterable: false },
         { text: 'Actions', value: 'actions', sortable: false, filterable: false },
@@ -11,14 +11,16 @@ export const state = () => ({
     editableFields: [
         { text: 'Name', value: 'name' },
         { text: 'Email', value: 'email' },
-        { text: 'Role', value: 'role', type:'dropdown', dataKey: 'roles'},
-        { text: 'Language', value: 'language_name', type:'dropdown', dataKey: 'languages' },
+        { text: 'Role', value: 'role_name', type:'dropdown', key:'role_id', dataKey: 'roles'},
+        { text: 'Language', value: 'language_name', type:'dropdown', key:'language_id', dataKey: 'languages' },
     ],
     defaultNew: {
         name: '',
         email: '',
-        role: '',
+        role_name: '',
+        role_id: '',
         language_name: '',
+        language_id: '',
         active: true,
     },
     actions: [
@@ -30,7 +32,16 @@ export const state = () => ({
 });
 
 export const getters = {
-    users: state => state.users,
+    users: state => {
+        state.users.forEach( (user, index) => {
+            user['language_name'] = user['language']['name'];
+            user['language_id'] = user['language']['id'];
+            user['role_name'] = user['role']['name'];
+            user['role_id'] = user['role']['id'];
+            state.users[index] = user;
+        });
+        return state.users;
+    },
     headers: state => state.headers,
     editableFields: state => state.editableFields,
     defaultNew: state => state.defaultNew,
@@ -39,12 +50,12 @@ export const getters = {
         return {
             'roles': {
                 textKey: 'name',
-                valueKey: 'name',
+                valueKey: 'id',
                 items: rootGetters["roles-management/roles"],
             },
             'languages': {
                 textKey: 'name',
-                valueKey: 'name',
+                valueKey: 'id',
                 items: rootGetters["languages/languages"],
             },
         };

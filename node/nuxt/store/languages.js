@@ -4,6 +4,15 @@ export const state = () => ({
 
 export const getters = {
     languages: state => state.languages,
+    languageById: state => id => {
+        let language = null;
+        state.languages.forEach(element => {
+            if(element.id===id){
+                language=element;
+            }
+        });
+        return language;
+    }
 };
 
 export const mutations = {

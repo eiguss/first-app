@@ -30,6 +30,12 @@ export default {
             actions: 'actions',
             data: 'data',
         }),
+        ...mapGetters('roles-management', {
+            getRoleById: 'roleById',
+        }),
+        ...mapGetters('languages', {
+            getLanguageById: 'languageById',
+        }),
     },
     methods: {
         ...mapActions('users-management', {
@@ -37,6 +43,8 @@ export default {
             addUser: 'addUser',
         }),
         editItem () {
+            this.editedItem.language = this.getLanguageById(this.editedItem.language_id);
+            this.editedItem.role = this.getRoleById(this.editedItem.role_id);
             this.editUser({ user: this.editedItem, index: this.editedIndex });
         },
         addItem () {
