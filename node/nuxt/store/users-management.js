@@ -33,14 +33,16 @@ export const state = () => ({
 
 export const getters = {
     users: state => {
-        state.users.forEach( (user, index) => {
-            user['language_name'] = user['language']['name'];
-            user['language_id'] = user['language']['id'];
-            user['role_name'] = user['role']['name'];
-            user['role_id'] = user['role']['id'];
-            state.users[index] = user;
+        let users = [];
+        state.users.forEach( (element, index) => {
+            let user = Object.assign({}, element);
+            user.language_name= element['language']['name'];
+            user.language_id= element['language']['id'];
+            user.role_name= element['role']['name'];
+            user.role_id= element['role']['id'];
+            users[index] = user;
         });
-        return state.users;
+        return users;
     },
     headers: state => state.headers,
     editableFields: state => state.editableFields,
@@ -59,6 +61,12 @@ export const getters = {
                 items: rootGetters["languages/languages"],
             },
         };
+    },
+    getUserFromItem: (_state, _getters, _rootState, rootGetters) => (user) => {
+        user.language = rootGetters["languages/languageById"](user.language_id);
+        user.role = rootGetters["roles-management/roleById"](user.role_id);
+
+        return user;
     },
 };
 

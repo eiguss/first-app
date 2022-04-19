@@ -29,12 +29,7 @@ export default {
             defaultNewItem: 'defaultNew',
             actions: 'actions',
             data: 'data',
-        }),
-        ...mapGetters('roles-management', {
-            getRoleById: 'roleById',
-        }),
-        ...mapGetters('languages', {
-            getLanguageById: 'languageById',
+            getUserFromItem: 'getUserFromItem',
         }),
     },
     methods: {
@@ -43,12 +38,10 @@ export default {
             addUser: 'addUser',
         }),
         editItem () {
-            this.editedItem.language = this.getLanguageById(this.editedItem.language_id);
-            this.editedItem.role = this.getRoleById(this.editedItem.role_id);
-            this.editUser({ user: this.editedItem, index: this.editedIndex });
+            this.editUser({ user: this.getUserFromItem(this.editedItem), index: this.editedIndex });
         },
         addItem () {
-            this.addUser(this.editedItem);
+            this.addUser(this.getUserFromItem(this.editedItem));
         },
         disableEnableItem () {
             this.editedItem.active = !this.editedItem.active;
