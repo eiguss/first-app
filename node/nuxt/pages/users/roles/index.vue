@@ -21,7 +21,7 @@ export default {
         ...mapGetters('roles-management', {
             items: 'roles',
             headers: 'headers',
-            itemFields: 'fields',
+            itemEditableFields: 'editableFields',
             defaultNewItem: 'defaultNew',
             actions: 'actions',
         }),

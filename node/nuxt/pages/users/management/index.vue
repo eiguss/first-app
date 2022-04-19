@@ -4,7 +4,11 @@ import TableItemManagementMixin from "@/mixins/TableItemManagementMixin.vue";
 export default {
     mixins: [TableItemManagementMixin],
     async asyncData({ store }) {
-        await store.dispatch('users-management/getUsers');
+        await Promise.all([
+            store.dispatch('users-management/getUsers'),
+            store.dispatch('roles-management/getRoles'),
+            store.dispatch('languages/getLanguages'),
+        ]);
     },
     data() {
         return {
@@ -21,9 +25,10 @@ export default {
         ...mapGetters('users-management', {
             items: 'users',
             headers: 'headers',
-            itemFields: 'fields',
+            itemEditableFields: 'editableFields',
             defaultNewItem: 'defaultNew',
             actions: 'actions',
+            data: 'data',
         }),
     },
     methods: {

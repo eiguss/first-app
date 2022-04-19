@@ -5,7 +5,7 @@ export const state = () => ({
         { text: 'Description', value: 'description', filterable: false },
         { text: 'Actions', value: 'actions', sortable: false, filterable: false },
     ],
-    fields: [
+    editableFields: [
         { text: 'Name',value: 'name' },
         { text: 'Description', value: 'description' },
     ],
@@ -24,7 +24,7 @@ export const state = () => ({
 export const getters = {
     rights: state => state.rights,
     headers: state => state.headers,
-    fields: state => state.fields,
+    editableFields: state => state.editableFields,
     defaultNew: state => state.defaultNew,
     actions: state => state.actions,
 };

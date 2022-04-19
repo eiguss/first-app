@@ -41,12 +41,22 @@
                                 <v-container>
                                     <v-row>
                                         <v-col cols="12" sm="6" md="4"
-                                            v-for="itemField in itemFields"
-                                            :key="itemField.value"
-                                        >
+                                            v-for="itemEditableField in itemEditableFields"
+                                            :key="itemEditableField.value"
+                                        >   
+                                            <v-select
+                                                v-if="itemEditableField.type==='dropdown'"
+                                                v-model="editedItem[itemEditableField.value]"
+                                                :items="data[itemEditableField.dataKey].items"
+                                                :item-text="data[itemEditableField.dataKey].textKey"
+                                                :item-value="data[itemEditableField.dataKey].valueKey"
+                                                :label="itemEditableField.text"
+                                                hide-selected
+                                            ></v-select>
                                             <v-text-field
-                                                v-model="editedItem[itemField.value]" 
-                                                :label="itemField.text">
+                                                v-else
+                                                v-model="editedItem[itemEditableField.value]" 
+                                                :label="itemEditableField.text">
                                             </v-text-field>
                                         </v-col>
                                     </v-row>
@@ -115,9 +125,10 @@ export default {
         /* Rewritte Computed on mix */
         items(){return []},
         headers(){return []},
-        itemFields(){return []},
+        itemEditableFields(){return []},
         defaultNewItem(){return []},
         actions(){return []},
+        data(){return []},
     },
     methods: {
         actionEvent(item, action) {

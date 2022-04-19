@@ -8,11 +8,11 @@ export const state = () => ({
         { text: 'Active', value: 'active', filterable: false },
         { text: 'Actions', value: 'actions', sortable: false, filterable: false },
     ],
-    fields: [
-        { text: 'Name',value: 'name' },
+    editableFields: [
+        { text: 'Name', value: 'name' },
         { text: 'Email', value: 'email' },
-        { text: 'Role', value: 'role' },
-        { text: 'Language', value: 'language_name' },
+        { text: 'Role', value: 'role', type:'dropdown', dataKey: 'roles'},
+        { text: 'Language', value: 'language_name', type:'dropdown', dataKey: 'languages' },
     ],
     defaultNew: {
         name: '',
@@ -32,9 +32,23 @@ export const state = () => ({
 export const getters = {
     users: state => state.users,
     headers: state => state.headers,
-    fields: state => state.fields,
+    editableFields: state => state.editableFields,
     defaultNew: state => state.defaultNew,
     actions: state => state.actions,
+    data: (_state, _getters, _rootState, rootGetters) => {
+        return {
+            'roles': {
+                textKey: 'name',
+                valueKey: 'name',
+                items: rootGetters["roles-management/roles"],
+            },
+            'languages': {
+                textKey: 'name',
+                valueKey: 'name',
+                items: rootGetters["languages/languages"],
+            },
+        };
+    },
 };
 
 export const mutations = {

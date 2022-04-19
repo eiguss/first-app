@@ -21,7 +21,7 @@ export default {
         ...mapGetters('rights-management', {
             items: 'rights',
             headers: 'headers',
-            itemFields: 'fields',
+            itemEditableFields: 'editableFields',
             defaultNewItem: 'defaultNew',
             actions: 'actions',
         }),
