@@ -24,15 +24,8 @@ class UsersService
                 'name' => 'Root Test',
                 'creation_date' => 1650058268,
                 'active' => true,
-                'language' => [
-                    'id' => 1,
-                    'name' => 'english',
-                    'isoCode' => 'en',
-                ],
-                'role' => [
-                    'id' => 1,
-                    'name' => 'Root',
-                ],
+                'language_id' => 1,
+                'role_id' => 1,
             ],
             [
                 'id' => 2,
@@ -40,15 +33,8 @@ class UsersService
                 'name' => 'Admin',
                 'creation_date' => 1650058268,
                 'active' => true,
-                'language' => [
-                    'id' => 2,
-                    'name' => 'spanish',
-                    'isoCode' => 'es',
-                ],
-                'role' => [
-                    'id' => 2,
-                    'name' => 'Administrator',
-                ],
+                'language_id' => 2,
+                'role_id' => 2,
             ],
             [
                 'id' => 3,
@@ -56,15 +42,8 @@ class UsersService
                 'name' => 'Laura Gimenez',
                 'creation_date' => 1650058268,
                 'active' => false,
-                'language' => [
-                    'id' => 2,
-                    'name' => 'spanish',
-                    'isoCode' => 'es',
-                ],
-                'role' => [
-                    'id' => 2,
-                    'name' => 'Administrator',
-                ],
+                'language_id' => 2,
+                'role_id' => 2,
             ]
         ];
     }

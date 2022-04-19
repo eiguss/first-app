@@ -32,14 +32,12 @@ export const state = () => ({
 });
 
 export const getters = {
-    users: state => {
+    users: (state, _getters, _rootState, rootGetters) => {
         let users = [];
         state.users.forEach( (element, index) => {
             let user = Object.assign({}, element);
-            user.language_name= element['language']['name'];
-            user.language_id= element['language']['id'];
-            user.role_name= element['role']['name'];
-            user.role_id= element['role']['id'];
+            user.language_name= rootGetters["languages/languageById"](element.language_id).name;
+            user.role_name= rootGetters["roles-management/roleById"](element.role_id).name;
             users[index] = user;
         });
         return users;
@@ -50,23 +48,9 @@ export const getters = {
     actions: state => state.actions,
     data: (_state, _getters, _rootState, rootGetters) => {
         return {
-            'roles': {
-                textKey: 'name',
-                valueKey: 'id',
-                items: rootGetters["roles-management/roles"],
-            },
-            'languages': {
-                textKey: 'name',
-                valueKey: 'id',
-                items: rootGetters["languages/languages"],
-            },
+            'roles': { textKey: 'name', valueKey: 'id', items: rootGetters["roles-management/roles"] },
+            'languages': { textKey: 'name', valueKey: 'id', items: rootGetters["languages/languages"] },
         };
-    },
-    getUserFromItem: (_state, _getters, _rootState, rootGetters) => (user) => {
-        user.language = rootGetters["languages/languageById"](user.language_id);
-        user.role = rootGetters["roles-management/roleById"](user.role_id);
-
-        return user;
     },
 };
 

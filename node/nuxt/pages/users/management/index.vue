@@ -38,10 +38,10 @@ export default {
             addUser: 'addUser',
         }),
         editItem () {
-            this.editUser({ user: this.getUserFromItem(this.editedItem), index: this.editedIndex });
+            this.editUser({ user: this.editedItem, index: this.editedIndex });
         },
         addItem () {
-            this.addUser(this.getUserFromItem(this.editedItem));
+            this.addUser(this.editedItem);
         },
         disableEnableItem () {
             this.editedItem.active = !this.editedItem.active;
